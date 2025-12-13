@@ -19,10 +19,20 @@ document.addEventListener("DOMContentLoaded", () => {
   const navLinksDesktop = document.querySelectorAll(".nav-link");
 
   // Hamburger Menu Toggle
-  navToggle?.addEventListener("click", () => {
-    navToggle.classList.toggle("is-active");
-    navLinks.classList.toggle("is-open");
-    document.body.style.overflow = navLinks.classList.contains("is-open") ? "hidden" : "";
+  if (navToggle && navLinks) {
+    navToggle.addEventListener("click", () => {
+      const isOpen = navLinks.classList.toggle("is-open");
+      navToggle.classList.toggle("is-active", isOpen);
+      document.body.style.overflow = isOpen ? "hidden" : "auto";
+    });
+  }
+  // Tutup Hambrg
+  document.querySelectorAll(".nav-links a").forEach((link) => {
+    link.addEventListener("click", () => {
+      navLinks.classList.remove("is-open");
+      navToggle.classList.remove("is-active");
+      document.body.style.overflow = "auto";
+    });
   });
 
   // Smooth Scroll Navigation
