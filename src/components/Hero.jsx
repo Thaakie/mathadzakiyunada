@@ -12,7 +12,7 @@ const Hero = () => {
           </div>
         </div>
         <div className="hero-media">
-          <img src="https://placehold.co/400x500/d9cfc7/2b2b2b?text=Foto+Profil" alt="Foto profil" className="hero-photo w-full max-w-[300px] mx-auto md:mx-0 rounded-lg" />
+          <img src="/assets/1.jpg" alt="Foto profil" className="hero-photo w-full max-w-[300px] mx-auto md:mx-0 rounded-lg" />
         </div>
       </div>
 

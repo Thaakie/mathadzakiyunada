@@ -2,7 +2,7 @@ import React from 'react';
 
 const About = () => {
   return (
-    <section id="about" className="py-16">
+    <section id="about" className="justify-center py-16 ">
       <div className="max-w-[1100px] mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
         <div className="about-content">
           <h2 className="text-3xl font-bold mb-4">Tentang Saya</h2>

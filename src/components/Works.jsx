@@ -24,12 +24,12 @@ const Works = () => {
               </div>
             </div>
             <div className="card-content p-6">
-              <h3 className="card-title text-xl font-bold mb-2">Sistem Informasi Kampus</h3>
-              <p className="card-desc text-[#2b2b2b] opacity-80 mb-4">Web app untuk pengelolaan data mahasiswa, dosen, dan mata kuliah dengan fitur dashboard admin.</p>
+              <h3 className="card-title text-xl font-bold mb-2">Fetch Pokemon</h3>
+              <p className="card-desc text-[#2b2b2b] opacity-80 mb-4">Web app untuk pembelajaran fetch</p>
               <div className="card-tags flex flex-wrap gap-2">
-                <span className="bg-[#f9f8f6] px-3 py-1 rounded-full text-sm">Laravel</span>
-                <span className="bg-[#f9f8f6] px-3 py-1 rounded-full text-sm">MySQL</span>
-                <span className="bg-[#f9f8f6] px-3 py-1 rounded-full text-sm">Bootstrap</span>
+                <span className="bg-[#f9f8f6] px-3 py-1 rounded-full text-sm">HTML</span>
+                <span className="bg-[#f9f8f6] px-3 py-1 rounded-full text-sm">CSS</span>
+                <span className="bg-[#f9f8f6] px-3 py-1 rounded-full text-sm">JavaScript</span>
               </div>
             </div>
           </article>

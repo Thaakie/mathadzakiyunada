@@ -19,7 +19,7 @@ const Contact = () => {
             <input type="email" name="email" placeholder="Email" required className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9b59c]" />
           </div>
           <textarea name="message" placeholder="Pesan Anda..." rows="5" required className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9b59c] mb-4"></textarea>
-          <button className="btn w-full bg-[#2b2b2b] text-white py-3 rounded-lg font-medium transition-all duration-300 hover:bg-[#1a1a1a]" type="submit">Kirim Pesan</button>
+          <button className="btn w-full bg-red text-white py-3 rounded-lg font-medium transition-all duration-300 hover:bg-[#1a1a1a]" type="submit">Kirim Pesan</button>
         </form>
       </div>
     </section>
