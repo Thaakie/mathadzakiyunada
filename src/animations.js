@@ -86,7 +86,7 @@ export const initAnimations = () => {
         gsap.to(el, {
           scrollTrigger: {
             trigger: el,
-            start: "top 85%",
+            start: "top 80%",
             end: "top 20%",
             toggleActions: "play none none reverse",
           },
@@ -113,7 +113,7 @@ export const initAnimations = () => {
       gsap.set(techCards, { opacity: 0, y: 60, scale: 0.95 });
 
       ScrollTrigger.batch(techCards, {
-        start: "top 85%",
+        start: "top 90%",
         onEnter: (batch) => {
           gsap.to(batch, {
             opacity: 1,
