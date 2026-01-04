@@ -1,24 +1,90 @@
-import React from 'react';
+import React from "react";
 
 const Hero = () => {
   return (
     <section id="hero" className="min-h-[90vh] flex items-center relative pt-8">
       <div className="max-w-[1100px] mx-auto px-8 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-12 items-center">
-        <div className="hero-text">
-          <h1 className="title text-4xl md:text-5xl font-bold mb-4">Hola, saya <br />M Atha Dzaki Yunada</h1>
-          <p className="subtitle text-lg text-[#2b2b2b] leading-relaxed mb-6">Junior Designer / Web Developer — Membuat pengalaman digital yang sederhana dan elegan.</p>
-          <div className="hero-buttons">
-            <a className="inline-block bg-[#2b2b2b] text-white px-6 py-3 rounded-lg font-medium transition-all duration-300 hover:bg-[#1a1a1a] no-underline" href="#works">Lihat Karya</a>
+        {/* Hero Text */}
+        <div className="hero-text order-2 md:order-1 text-center md:text-left">
+          <h1 className="title text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
+            Hola, I am<br />
+            <span className="bg-gradient-to-r from-[#2b2b2b] via-[#4a4a4a] to-[#c9b59c] bg-clip-text text-transparent">
+              M Atha Dzaki Yunada
+            </span>
+          </h1>
+          <p className="subtitle text-lg md:text-xl text-[#2b2b2b]/70 leading-relaxed mb-8 max-w-lg mx-auto md:mx-0">
+            Junior Web Developer — Designing user-friendly and elegant digital interfaces.
+          </p>
+          <div className="hero-buttons flex flex-wrap gap-4 justify-center md:justify-start">
+            <a 
+              className="inline-flex items-center gap-2 bg-[#2b2b2b] text-white px-7 py-3.5 rounded-xl 
+                font-medium transition-all duration-300 ease-out
+                hover:bg-[#1a1a1a] hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20
+                no-underline group" 
+              href="#works"
+            >
+              See my works
+              <svg 
+                className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" 
+                fill="none" 
+                stroke="currentColor" 
+                viewBox="0 0 24 24"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <a 
+              className="inline-flex items-center gap-2 bg-transparent text-[#2b2b2b] px-7 py-3.5 rounded-xl 
+                font-medium border-2 border-[#2b2b2b]/20 transition-all duration-300 ease-out
+                hover:border-[#c9b59c] hover:text-[#c9b59c] hover:-translate-y-1
+                no-underline" 
+              href="#contact"
+            >
+              Contact me
+            </a>
           </div>
         </div>
-        <div className="hero-media">
-          <img src="/assets/1.jpg" alt="Foto profil" className="hero-photo w-full max-w-[300px] mx-auto md:mx-0 rounded-lg" />
+
+        {/* Hero Image */}
+        <div className="hero-media order-1 md:order-2">
+          <div className="relative">
+            {/* Decorative Background */}
+            <div className="absolute -inset-4 bg-gradient-to-br from-[#c9b59c]/30 to-transparent rounded-3xl blur-2xl" />
+            <img 
+              src="/assets/1.jpg" 
+              alt="Foto profil" 
+              className="hero-photo relative w-full max-w-[320px] mx-auto rounded-2xl
+                shadow-[20px_20px_0px_rgba(201,181,156,0.3)]
+                transition-all duration-500 ease-out
+                hover:shadow-[25px_25px_0px_rgba(201,181,156,0.4)] hover:-translate-x-1 hover:-translate-y-1" 
+            />
+          </div>
         </div>
       </div>
 
-      <button id="scroll-down" className="scroll-down absolute bottom-8 left-1/2 transform -translate-x-1/2" aria-label="Scroll ke bawah">
-        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" className="text-[#2b2b2b]">
-          <path d="M12 5v14M19 12l-7 7-7-7" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* Scroll Down Button */}
+      <button 
+        onClick={() => document.getElementById('about')?.scrollIntoView({ behavior: 'smooth' })}
+        className="scroll-down absolute bottom-8 left-1/2 -translate-x-1/2 
+          p-3 rounded-full bg-white/50 backdrop-blur-sm border border-white/30
+          transition-all duration-300 hover:bg-white/80 hover:scale-110
+          focus:outline-none focus:ring-2 focus:ring-[#c9b59c]" 
+        aria-label="Scroll ke bawah"
+      >
+        <svg 
+          width="24" 
+          height="24" 
+          viewBox="0 0 24 24" 
+          fill="none" 
+          stroke="currentColor" 
+          className="text-[#2b2b2b] animate-bounce"
+        >
+          <path 
+            d="M12 5v14M19 12l-7 7-7-7" 
+            strokeWidth="2" 
+            strokeLinecap="round" 
+            strokeLinejoin="round" 
+          />
         </svg>
       </button>
     </section>
