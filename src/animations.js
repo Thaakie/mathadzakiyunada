@@ -13,7 +13,7 @@ const config = {
   ease: {
     smooth: "power2.out",
     elastic: "elastic.out(1, 0.5)",
-    bounce: "back.out(1.7)",
+    bounce: "back.out(1.0)",
   },
   stagger: 0.1,
 };
