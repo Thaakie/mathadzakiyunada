@@ -57,8 +57,8 @@ const Hero = () => {
       {/* Scroll Down Button */}
       <button
         onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-        className="scroll-down absolute bottom-8 left-1/2 -translate-x-1/2 
-          p-3 rounded-full bg-white/50 backdrop-blur-sm border border-white/30
+        className="arrow flex justify-center items-center scroll-down absolute left-10 -translate-x-1/2 
+          p-3  rounded-full bg-white/50 backdrop-blur-sm border border-white/30
           transition-all duration-300 hover:bg-white/80 hover:scale-110
           focus:outline-none focus:ring-2 focus:ring-[#c9b59c]"
         aria-label="Scroll ke bawah"

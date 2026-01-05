@@ -575,6 +575,10 @@ textarea::placeholder {
     grid-template-columns: 1fr;
   }
 
+  .arrow {
+    display: none;
+  }
+
   .hero-text {
     order: 2;
     text-align: center;
