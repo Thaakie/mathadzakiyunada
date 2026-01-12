@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-/* =============================================
-   CSS VARIABLES & BASE STYLES
-   ============================================= */
-
 :root {
   /* Colors */
   --bg-1: #f9f8f6;

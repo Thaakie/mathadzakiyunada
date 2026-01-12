@@ -44,6 +44,16 @@ export const initAnimations = () => {
         duration: config.duration.slow,
       })
       .to(
+        ".hero-photo",
+        {
+          x: 0,
+          scale: 1,
+          opacity: 1,
+          duration: config.duration.slow,
+        },
+        "-=0.0"
+      )
+      .to(
         ".subtitle",
         {
           y: 0,
@@ -61,16 +71,6 @@ export const initAnimations = () => {
           duration: config.duration.fast,
         },
         "-=0.4"
-      )
-      .to(
-        ".hero-photo",
-        {
-          x: 0,
-          scale: 1,
-          opacity: 1,
-          duration: config.duration.slow,
-        },
-        "-=0.6"
       );
 
     // =====================

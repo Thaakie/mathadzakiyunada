@@ -47,7 +47,7 @@ const Hero = () => {
               alt="Foto profil"
               className="hero-photo relative w-full max-w-[320px] mx-auto rounded-2xl
                 shadow-[20px_20px_0px_rgba(201,181,156,0.3)]
-                transition-all duration-500 ease-out
+                transition-all duration-500 ease-in-out
                 hover:shadow-[25px_25px_0px_rgba(201,181,156,0.4)] hover:-translate-x-1 hover:-translate-y-1"
             />
           </div>
