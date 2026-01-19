@@ -36,10 +36,10 @@ const projects = [
   },
   {
     id: 3,
-    title: "On Progress..",
-    description: "Future Project",
-    image: "/assets/backgroundgrey.jpg",
-    tags: ["...", "..."],
+    title: "To-Do App",
+    description: "Todo list",
+    image: "/assets/todoo.png",
+    tags: ["React Native", "Next.js"],
     link: "#",
   },
   {
