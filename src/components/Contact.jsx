@@ -20,7 +20,7 @@ const Contact = () => {
       .then(
         () => {
           setIsLoading(false);
-          alert("Pesan berhasil terkirim ke emailmu!");
+          alert("Pesan berhasil terkirim!");
           e.target.reset();
         },
         (error) => {

@@ -41,9 +41,7 @@ body {
   overflow-x: hidden;
 }
 
-/* =============================================
-   UTILITY CLASSES
-   ============================================= */
+/* UTILITY CLASSES */
 
 .container {
   max-width: var(--container);
@@ -75,9 +73,7 @@ body {
   transition: all var(--transition-normal) var(--ease-bounce);
 }
 
-/* =============================================
-   HEADER & NAVIGATION
-   ============================================= */
+/*HEADER & NAVIGATION*/
 
 .site-header {
   position: sticky;
@@ -111,9 +107,8 @@ body {
   width: 100%;
 }
 
-/* =============================================
-   HERO SECTION
-   ============================================= */
+/*   HERO SECTION
+  */
 
 .hero {
   min-height: 90vh;
@@ -226,9 +221,7 @@ body {
   }
 }
 
-/* =============================================
-   ABOUT SECTION
-   ============================================= */
+/* ABOUT SECTION */
 
 .about {
   padding: 5rem 2rem;
@@ -310,9 +303,7 @@ body {
   border-color: transparent;
 }
 
-/* =============================================
-   TECH STACK SECTION
-   ============================================= */
+/* TECH STACK SECTION */
 
 .tech-card {
   transition: all var(--transition-normal) var(--ease-smooth);
@@ -322,9 +313,8 @@ body {
   transition: width 1s var(--ease-smooth);
 }
 
-/* =============================================
-   WORKS / PROJECTS SECTION
-   ============================================= */
+/*   WORKS / PROJECTS SECTION
+  */
 
 #works {
   padding: 5rem 2rem;
@@ -460,9 +450,7 @@ body {
   color: var(--white);
 }
 
-/* =============================================
-   CONTACT SECTION
-   ============================================= */
+/* CONTACT SECTION */
 
 .contact {
   text-align: center;
@@ -530,9 +518,7 @@ textarea::placeholder {
   color: #999;
 }
 
-/* =============================================
-   FOOTER
-   ============================================= */
+/* FOOTER */
 
 .footer {
   padding: 2rem;
@@ -541,9 +527,7 @@ textarea::placeholder {
   font-size: 0.9rem;
 }
 
-/* =============================================
-   MOBILE / RESPONSIVE
-   ============================================= */
+/*  MOBILE / RESPONSIVE */
 
 .hamburger {
   display: none;
@@ -642,9 +626,7 @@ textarea::placeholder {
   }
 }
 
-/* =============================================
-   MICRO-ANIMATIONS
-   ============================================= */
+/* MICRO-ANIMATIONS*/
 
 @keyframes fadeInUp {
   from {
