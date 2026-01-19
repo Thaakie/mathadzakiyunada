@@ -22,12 +22,12 @@ const About = () => {
 
         {/* Role Cards */}
         <div className="about-cards flex justify-center items-center flex-col gap-4 h-full ">
-          <div className="w-full max-w-sm self-end">
+          <div className="w-full max-w-screen">
             <div className="pb-5">
-              <RoleCard title="Front-End Web Developer" emoji="" delay={0} />
+              <RoleCard title="Front-End Web Developer" delay={0} />
             </div>
             <div className="pt-5">
-              <RoleCard title="Basic Back-End Web Developer" emoji="" delay={100} />
+              <RoleCard title="Basic Back-End Web Developer" delay={100} />
             </div>
           </div>
         </div>

@@ -27,7 +27,7 @@ const projects = [
     link: "#",
   },
   {
-    id: 3,
+    id: 4,
     title: "Letter Website",
     description: "Website for sending letter to someone you mattered ;D.",
     image: "/assets/PESAN.png",
@@ -35,7 +35,7 @@ const projects = [
     link: "#",
   },
   {
-    id: 3,
+    id: 5,
     title: "To-Do App",
     description: "Todo list",
     image: "/assets/todoo.png",
@@ -43,7 +43,7 @@ const projects = [
     link: "#",
   },
   {
-    id: 3,
+    id: 6,
     title: "On Progress..",
     description: "Future Project",
     image: "/assets/backgroundgrey.jpg",

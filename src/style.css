@@ -571,6 +571,10 @@ textarea::placeholder {
     grid-template-columns: 1fr;
   }
 
+  .about-cards {
+    grid-template-columns: 1fr;
+  }
+
   .arrow {
     display: none;
   }
@@ -588,7 +592,7 @@ textarea::placeholder {
 
   .hamburger {
     display: block;
-    z-index: 200;
+    z-index: 199;
     position: relative;
   }
 
