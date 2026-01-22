@@ -465,6 +465,7 @@ body {
 }
 
 .contact-social-links a {
+  position: relative;
   text-decoration: none;
   color: var(--text);
   font-weight: 600;
@@ -479,6 +480,27 @@ body {
   color: var(--white);
   transform: translateY(-3px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.contact-social-links a::before {
+  content: attr(data-name);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-10px);
+  background: var(--text);
+  color: var(--white);
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: all var(--transition-fast) var(--ease-smooth);
+}
+
+.contact-social-links a:hover::before {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-20px);
 }
 
 .contact-form {
