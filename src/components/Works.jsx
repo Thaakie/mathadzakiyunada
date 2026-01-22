@@ -44,11 +44,11 @@ const projects = [
   },
   {
     id: 6,
-    title: "On Progress..",
-    description: "Future Project",
-    image: "/assets/backgroundgrey.jpg",
-    tags: ["...", "..."],
-    link: "#",
+    title: "Quiz App",
+    description: "QUIZ APP with REACT",
+    image: "/assets/QUIZ1.png",
+    tags: ["ReactJS"],
+    link: "https://react-quiz-iota-nine.vercel.app/",
   },
 ];
 
