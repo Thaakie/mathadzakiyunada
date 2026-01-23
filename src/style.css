@@ -503,6 +503,22 @@ body {
   transform: translateX(-50%) translateY(-20px);
 }
 
+/* Geser tombol LinkedIn ke KIRI */
+#btn-linkedin:hover {
+  transform: translateX(-12px); /* Nilai negatif = Kiri */
+}
+
+/* Geser tombol GitHub ke KANAN */
+#btn-github:hover {
+  transform: translateX(12px); /* Nilai positif = Kanan */
+}
+
+/* Opsional: Efek saat tombol ditekan (biar lebih interaktif) */
+#btn-linkedin:active,
+#btn-github:active {
+  transform: translateX(0); /* Balik ke tengah sebentar saat diklik */
+}
+
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
