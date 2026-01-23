@@ -3,38 +3,78 @@ import React, { useState } from "react";
 // Projects data
 const projects = [
   { id: 1, title: "Fetch Pokemon", description: "Web app for fetching API Pokemon.", image: "/assets/fetchpoke.png", tags: ["ReactJS", "Tailwind CSS"], link: "https://reactpokemonapi.vercel.app/" },
+
   { id: 2, title: "UMKM Landing Page", description: "UMKM Website Profile (Our College Project).", image: "/assets/UMKMLP.png", tags: ["HTML", "CSS"], link: "https://umkm-web-three.vercel.app/" },
-  { id: 3, title: "Recap-Chat Website", description: "Website for learning PHP and Framework Laravel.", image: "/assets/rechatwebsite.png", tags: ["PHP", "Laravel"], link: "#" },
-  { id: 4, title: "Letter Website", description: "Website for sending letter to someone you mattered ;D.", image: "/assets/PESAN.png", tags: ["PHP", "Laravel"], link: "#" },
-  { id: 5, title: "To-Do App", description: "Todo list", image: "/assets/todoo.png", tags: ["React Native", "Next.js"], link: "#" },
-  { id: 6, title: "Quiz App", description: "QUIZ APP with REACT", image: "/assets/QUIZ1.png", tags: ["ReactJS"], link: "https://react-quiz-iota-nine.vercel.app/" },
+
+  { id: 3, title: "Quiz App", description: "QUIZ APP with REACT", image: "/assets/QUIZ1.png", tags: ["ReactJS", "CSS"], link: "https://react-quiz-iota-nine.vercel.app/" },
+
+  { id: 4, title: "Recap-Chat Website", description: "Website for learning PHP and Framework Laravel.", image: "/assets/rechatwebsite.png", tags: ["PHP", "Laravel"], link: "#" },
+
+  { id: 5, title: "Letter Website", description: "Website for sending letter to someone you mattered ;D.", image: "/assets/PESAN.png", tags: ["PHP", "Laravel"], link: "#" },
+
+  { id: 6, title: "To-Do App", description: "Todo list", image: "/assets/todoo.png", tags: ["React Native", "Next.js"], link: "#" },
 ];
 
 // Project Card Component
-const ProjectCard = ({ project, index }) => (
-  <article
-    className="project-card group bg-white rounded-2xl overflow-hidden 
-      shadow-sm border border-gray-100/50
-      transition-all duration-500 ease-out
-      hover:shadow-2xl hover:shadow-black/10 hover:-translate-y-3 hover:border-transparent"
-    style={{ transitionDelay: `${index * 80}ms` }}
-  >
-    <div className="card-image relative overflow-hidden">
-      <img src={project.image} alt={`Preview ${project.title}`} loading="lazy" className="w-full h-56 object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
-    </div>
-    <div className="card-content p-6 flex flex-col flex-grow">
-      <h3 className="card-title text-xl font-bold mb-2 text-[#2b2b2b] transition-colors duration-300 group-hover:text-[#c9b59c]">{project.title}</h3>
-      <p className="card-desc text-[#2b2b2b]/70 mb-5 flex-grow leading-relaxed">{project.description}</p>
-      <div className="card-tags flex flex-wrap gap-2">
-        {project.tags.map((tag, i) => (
-          <span key={i} className="bg-[#f9f8f6] px-3 py-1.5 rounded-lg text-xs font-semibold text-[#666] transition-all duration-300 hover:bg-[#c9b59c] hover:text-white cursor-default">
-            {tag}
-          </span>
-        ))}
-      </div>
-    </div>
-  </article>
-);
+const ProjectCard = ({ project, index }) => {
+  // Cek apakah link tersedia atau hanya "#"
+  const isLinkAvailable = project.link && project.link !== "#";
+
+  return (
+    <a
+      href={isLinkAvailable ? project.link : undefined} // Hanya beri href jika link valid
+      target={isLinkAvailable ? "_blank" : "_self"}
+      rel="noopener noreferrer"
+      className={`block w-full h-full ${!isLinkAvailable ? "cursor-default" : "cursor-pointer"}`}
+      onClick={(e) => !isLinkAvailable && e.preventDefault()} // Cegah klik jika "#"
+    >
+      <article
+        className="project-card group bg-white rounded-2xl overflow-hidden 
+          shadow-sm border border-gray-100/50
+          transition-all duration-500 ease-out h-full flex flex-col
+          hover:shadow-2xl hover:shadow-black/10 hover:-translate-y-3 hover:border-transparent"
+        style={{ transitionDelay: `${index * 80}ms` }}
+      >
+        {/* --- BAGIAN GAMBAR & OVERLAY --- */}
+        <div className="card-image relative overflow-hidden h-56">
+          {/* Gambar Utama */}
+          <img src={project.image} alt={`Preview ${project.title}`} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
+
+          {/* Overlay Hover (Hanya muncul jika ada link) */}
+          {isLinkAvailable && (
+            <div className="absolute inset-0 bg-black/40 opacity-0 transition-opacity duration-300 group-hover:opacity-100 flex items-center justify-center backdrop-blur-[2px]">
+              <div className="bg-white/20 p-3 rounded-full transform scale-0 transition-transform duration-300 ease-out group-hover:scale-100">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={2} stroke="currentColor" className="w-8 h-8 text-white">
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 6H5.25A2.25 2.25 0 0 0 3 8.25v10.5A2.25 2.25 0 0 0 5.25 21h10.5A2.25 2.25 0 0 0 18 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25" />
+                </svg>
+              </div>
+            </div>
+          )}
+
+          {/* Badge Coming Soon (Jika link "#") */}
+          {!isLinkAvailable && (
+            <div className="absolute inset-0 bg-gray-900/60 flex items-center justify-center">
+              <span className="text-white font-bold uppercase tracking-wider text-xs border border-white/50 px-3 py-1.5 rounded bg-black/20 backdrop-blur-sm">No direct link</span>
+            </div>
+          )}
+        </div>
+
+        {/* --- KONTEN KARTU --- */}
+        <div className="card-content p-6 flex flex-col flex-grow">
+          <h3 className="card-title text-xl font-bold mb-2 text-[#2b2b2b] transition-colors duration-300 group-hover:text-[#c9b59c]">{project.title}</h3>
+          <p className="card-desc text-[#2b2b2b]/70 mb-5 flex-grow leading-relaxed">{project.description}</p>
+          <div className="card-tags flex flex-wrap gap-2 mt-auto">
+            {project.tags.map((tag, i) => (
+              <span key={i} className="bg-[#f9f8f6] px-3 py-1.5 rounded-lg text-xs font-semibold text-[#666]">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </div>
+      </article>
+    </a>
+  );
+};
 
 const Works = () => {
   const [currentWorkPage, setCurrentWorkPage] = useState(0);
