@@ -36,7 +36,7 @@ const ProjectCard = ({ project, index }) => {
         style={{ transitionDelay: `${index * 80}ms` }}
       >
         {/* --- BAGIAN GAMBAR & OVERLAY --- */}
-        <div className="card-image relative overflow-hidden h-56">
+        <div className="card-image relative overflow-hidden h-40 sm:h-48 md:h-56">
           {/* Gambar Utama */}
           <img src={project.image} alt={`Preview ${project.title}`} loading="lazy" className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110" />
 
@@ -60,9 +60,9 @@ const ProjectCard = ({ project, index }) => {
         </div>
 
         {/* --- KONTEN KARTU --- */}
-        <div className="card-content p-6 flex flex-col flex-grow">
-          <h3 className="card-title text-xl font-bold mb-2 text-[#2b2b2b] transition-colors duration-300 group-hover:text-[#c9b59c]">{project.title}</h3>
-          <p className="card-desc text-[#2b2b2b]/70 mb-5 flex-grow leading-relaxed">{project.description}</p>
+        <div className="card-content p-4 md:p-6 flex flex-col flex-grow">
+          <h3 className="card-title text-lg md:text-xl font-bold mb-2 text-[#2b2b2b] transition-colors duration-300 group-hover:text-[#c9b59c]">{project.title}</h3>
+          <p className="card-desc text-sm md:text-base text-[#2b2b2b]/70 mb-5 flex-grow leading-relaxed">{project.description}</p>
           <div className="card-tags flex flex-wrap gap-2 mt-auto">
             {project.tags.map((tag, i) => (
               <span key={i} className="bg-[#f9f8f6] px-3 py-1.5 rounded-lg text-xs font-semibold text-[#666]">
@@ -92,7 +92,7 @@ const Works = () => {
         <div className="absolute bottom-1/4 -left-20 w-64 h-64 bg-[#c9b59c]/10 rounded-full blur-3xl" />
       </div>
 
-      <div className="max-w-[1100px] mx-auto px-8 relative z-10">
+      <div className="max-w-[1100px] mx-auto px-4 md:px-8 relative z-10">
         {/* Section Header */}
         <div className="section-header text-center mb-14">
           <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#2b2b2b]">My Works</h2>
@@ -100,7 +100,7 @@ const Works = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="works-grid grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="works-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
           {currentProjects.map((project, index) => (
             <ProjectCard key={project.id} project={project} index={index} />
           ))}
