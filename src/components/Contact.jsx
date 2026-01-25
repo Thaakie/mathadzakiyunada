@@ -3,32 +3,48 @@ import emailjs from "@emailjs/browser";
 
 const Contact = () => {
   const form = useRef();
+  const lastSentRef = useRef(0);
   const [isLoading, setIsLoading] = useState(false);
+  const COOLDOWN = 30_000; // 30 detik
 
   const sendEmail = (e) => {
     e.preventDefault();
+
+    // anti spam klik
+    if (isLoading) return;
+
+    // cooldown
+    if (Date.now() - lastSentRef.current < COOLDOWN) {
+      alert("Tunggu beberapa detik sebelum mengirim lagi.");
+      return;
+    }
+
+    // honeypot
+    if (form.current.website?.value) {
+      return;
+    }
+
     setIsLoading(true);
 
-    const SERVICE_ID = "service_9tjra32";
-    const TEMPLATE_ID = "template_x53m1re";
-    const PUBLIC_KEY = "l3iZXEEDv1OSF5zkt";
-
     emailjs
-      .sendForm(SERVICE_ID, TEMPLATE_ID, form.current, {
-        publicKey: PUBLIC_KEY,
+      .sendForm("service_9tjra32", "template_x53m1re", form.current, { publicKey: "l3iZXEEDv1OSF5zkt" })
+      .then(() => {
+        lastSentRef.current = Date.now();
+        alert("Pesan berhasil terkirim!");
+        e.target.reset();
       })
-      .then(
-        () => {
-          setIsLoading(false);
-          alert("Pesan berhasil terkirim!");
-          e.target.reset();
-        },
-        (error) => {
-          setIsLoading(false);
-          console.error("FAILED...", error.text);
+      .catch((error) => {
+        console.error("FAILED...", error);
+
+        if (error.status === 429) {
+          alert("Terlalu banyak permintaan. Tunggu beberapa saat lalu coba lagi.");
+        } else {
           alert("Gagal mengirim pesan, silakan coba lagi.");
-        },
-      );
+        }
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   };
 
   return (
@@ -56,6 +72,7 @@ const Contact = () => {
           <div className="form-row flex gap-4 mb-4">
             <input type="text" name="user_name" placeholder="Name" required className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9b59c]" />
             <input type="email" name="user_email" placeholder="Email" required className="flex-1 p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9b59c]" />
+            <input type="text" name="website" className="hidden" />
           </div>
           <textarea name="message" placeholder="Your message..." rows="5" required className="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#c9b59c] mb-4"></textarea>
 
