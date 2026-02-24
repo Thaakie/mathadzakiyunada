@@ -14,7 +14,7 @@ const projects = [
 
   { id: 6, title: "To-Do App", description: "Todo list", image: "/assets/todoo.png", tags: ["React Native", "Next.js"], link: "#" },
 
-  { id: 7, title: "Catterry", description: "A place for cat to be housed", image: "/assets/catterry.jpeg", tags: ["HTML", "CSS", "JavaScript"], link: "https://cattery-p-dicoding.vercel.app/" },
+  { id: 7, title: "Catterry", description: "A place for cat to be housed", image: "/assets/Catterry.jpeg", tags: ["HTML", "CSS", "JavaScript"], link: "https://cattery-p-dicoding.vercel.app/" },
 
   { id: 8, title: "Coming Soon", description: "Coming Soon", image: "", tags: ["None"], link: "#" },
 
