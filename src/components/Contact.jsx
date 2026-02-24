@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
+import Swal from "sweetalert2";
 
 const Contact = () => {
   const form = useRef();
@@ -7,7 +8,7 @@ const Contact = () => {
   const [isLoading, setIsLoading] = useState(false);
   const COOLDOWN = 30_000; // 30 detik
 
-  const sendEmail = (e) => {
+  const sendEmail = async (e) => {
     e.preventDefault();
 
     // anti spam klik
@@ -24,27 +25,31 @@ const Contact = () => {
       return;
     }
 
-    setIsLoading(true);
+    try {
+      setIsLoading(true);
 
-    emailjs
-      .sendForm("service_9tjra32", "template_x53m1re", form.current, { publicKey: "l3iZXEEDv1OSF5zkt" })
-      .then(() => {
-        lastSentRef.current = Date.now();
-        alert("Pesan berhasil terkirim!");
-        e.target.reset();
-      })
-      .catch((error) => {
-        console.error("FAILED...", error);
+      await emailjs.sendForm("service_9tjra32", "template_x53m1re", form.current, { publicKey: "l3iZXEEDv1OSF5zkt" });
 
-        if (error.status === 429) {
-          alert("Terlalu banyak permintaan. Tunggu beberapa saat lalu coba lagi.");
-        } else {
-          alert("Gagal mengirim pesan, silakan coba lagi.");
-        }
-      })
-      .finally(() => {
-        setIsLoading(false);
+      lastSentRef.current = Date.now();
+
+      Swal.fire({
+        title: "Success sended the email!",
+        icon: "success",
+        draggable: true,
       });
+
+      e.target.reset();
+    } catch (error) {
+      console.error("FAILED...", error);
+
+      if (error.status === 429) {
+        alert("Terlalu banyak permintaan. Tunggu beberapa saat lalu coba lagi.");
+      } else {
+        alert("Gagal mengirim pesan, silakan coba lagi.");
+      }
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
