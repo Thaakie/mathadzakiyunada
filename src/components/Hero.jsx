@@ -11,7 +11,7 @@ const Hero = () => {
             <br />
             <span className="bg-gradient-to-r from-[#2b2b2b] via-[#4a4a4a] to-[#c9b59c] bg-clip-text text-transparent">M Atha Dzaki Yunada</span>
           </h1>
-          <p className="subtitle text-lg md:text-xl text-[#2b2b2b]/70 leading-relaxed mb-8 max-w-lg mx-auto md:mx-0">Junior Web Developer — Designing user-friendly and elegant digital interfaces.</p>
+          <p className="subtitle text-lg md:text-xl text-[#2b2b2b]/70 leading-relaxed mb-8 max-w-lg mx-auto md:mx-0">Beginner Web Developer — Designing user-friendly and elegant digital interfaces.</p>
           <div className="hero-buttons flex flex-wrap gap-4 justify-center md:justify-start">
             <a
               className="inline-flex items-center gap-2 bg-[#2b2b2b] text-white px-7 py-3.5 rounded-xl 
