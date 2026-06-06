@@ -4,48 +4,93 @@ import { fadeInLeft, fadeInRight, fadeUp, staggerParent, viewport } from "../uti
 
 const About = () => {
   return (
-    <section id="about" className="py-20">
-      <div className="max-w-[1100px] mx-auto px-8 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-16 items-start">
-        <motion.div className="about-content" variants={staggerParent(0.12)} initial="hidden" whileInView="visible" viewport={viewport}>
-          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-6 text-[#2b2b2b]">
-            About me
-          </motion.h2>
-          <motion.p variants={fadeUp} className="text-lg text-[#2b2b2b]/80 leading-relaxed mb-8">
-            Im an Undergraduate student and focus on front-end web development while also working with back-end basics. I care about visual detail and user interaction, aiming to create functional and enjoyable web experiences.
-          </motion.p>
+    <section
+      id="about"
+      className="relative overflow-hidden border-y border-black/10 bg-[#1f1c18] py-20 md:py-24 text-[#f7f2ec]"
+    >
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute -top-16 left-1/3 h-48 w-48 rounded-full bg-[#c9b59c]/12 blur-3xl" />
+        <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-white/5 blur-3xl" />
+      </div>
 
-          <motion.div variants={staggerParent(0.1, 0.08)} className="personal-info-grid grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-gray-100">
-            <InfoItem icon={<UserIcon />} text="M Atha Dzaki Yunada" />
-            <InfoItem icon={<CalendarIcon />} text="Student of University Teknokrat Indonesia" />
-            <InfoItem icon={<LocationIcon />} text="Bandar Lampung" />
-            <InfoItem icon={<EmailIcon />} text="atha468@gmail.com" href="mailto:atha468@gmail.com" />
+      <div className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-8 lg:px-10">
+        <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-[1.2fr_0.8fr]">
+          <motion.div
+            className="about-content"
+            variants={staggerParent(0.12)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+          >
+            <motion.p
+              variants={fadeUp}
+              className="mb-3 text-xs font-semibold uppercase tracking-[0.32em] text-[#c9b59c]"
+            >
+              About Me
+            </motion.p>
+            <motion.h2
+              variants={fadeUp}
+              className="mb-6 text-3xl font-bold text-white md:text-4xl"
+            >
+              Building thoughtful interfaces with a warm visual touch.
+            </motion.h2>
+            <motion.p
+              variants={fadeUp}
+              className="mb-8 max-w-2xl text-lg leading-relaxed text-white/74"
+            >
+              Im an Undergraduate student focused on front-end web development while also working with back-end basics. I care about visual detail, interaction, and clarity, aiming to create web experiences that feel clean, engaging, and easy to use.
+            </motion.p>
+
+            <motion.div
+              variants={staggerParent(0.1, 0.08)}
+              className="personal-info-grid grid grid-cols-1 gap-6 border-t border-white/12 pt-6 sm:grid-cols-2"
+            >
+              <InfoItem icon={<UserIcon />} text="M Atha Dzaki Yunada" />
+              <InfoItem icon={<CalendarIcon />} text="Student of University Teknokrat Indonesia" />
+              <InfoItem icon={<LocationIcon />} text="Bandar Lampung" />
+              <InfoItem icon={<EmailIcon />} text="atha468@gmail.com" href="mailto:atha468@gmail.com" />
+            </motion.div>
           </motion.div>
-        </motion.div>
 
-        <motion.div className="about-cards flex justify-center items-center flex-col gap-4 h-full" variants={staggerParent(0.14, 0.12)} initial="hidden" whileInView="visible" viewport={viewport}>
-          <div className="w-full max-w-screen">
-            <div className="pb-5">
-              <RoleCard title="Front-End Web Developer" />
+          <motion.div
+            className="about-cards flex h-full flex-col items-center justify-center gap-4"
+            variants={staggerParent(0.14, 0.12)}
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewport}
+          >
+            <div className="w-full max-w-screen">
+              <div className="pb-5">
+                <RoleCard title="Front-End Web Developer" />
+              </div>
+              <div className="pt-5">
+                <RoleCard title="Back-End Web Developer" />
+              </div>
             </div>
-            <div className="pt-5">
-              <RoleCard title="Back-End Web Developer" />
-            </div>
-          </div>
-        </motion.div>
+          </motion.div>
+        </div>
       </div>
     </section>
   );
 };
 
 const InfoItem = ({ icon, text, href }) => (
-  <motion.div variants={fadeInLeft} className="info-item flex items-center gap-4 group cursor-default">
-    <div className="info-icon text-[#c9b59c] transition-transform duration-300 group-hover:scale-110">{icon}</div>
+  <motion.div
+    variants={fadeInLeft}
+    className="info-item group flex cursor-default items-center gap-4 rounded-[10px] border border-white/10 bg-white/4 px-4 py-4 backdrop-blur-sm"
+  >
+    <div className="info-icon text-[#c9b59c] transition-transform duration-300 group-hover:scale-110">
+      {icon}
+    </div>
     {href ? (
-      <a href={href} className="text-[#2b2b2b] no-underline transition-colors duration-300 hover:text-[#c9b59c]">
+      <a
+        href={href}
+        className="text-[#f7f2ec] no-underline transition-colors duration-300 hover:text-[#c9b59c]"
+      >
         {text}
       </a>
     ) : (
-      <span className="text-[#2b2b2b]">{text}</span>
+      <span className="text-[#f7f2ec]">{text}</span>
     )}
   </motion.div>
 );
@@ -53,13 +98,12 @@ const InfoItem = ({ icon, text, href }) => (
 const RoleCard = ({ title, emoji }) => (
   <motion.div
     variants={fadeInRight}
-    className="card group bg-white p-6 rounded-[10px] shadow-sm border border-[#2b2b2b]/12
-      font-semibold text-center transition-all duration-500 ease-out
-      hover:-translate-y-2 hover:shadow-xl hover:shadow-black/5 hover:border-transparent
-      cursor-default"
+    className="card group cursor-default rounded-[10px] border border-[#2b2b2b]/12 bg-[#f7f2ec] p-6 text-center font-semibold text-[#2b2b2b] shadow-sm transition-all duration-500 ease-out hover:-translate-y-2 hover:border-[#2b2b2b]/30 hover:shadow-xl hover:shadow-black/10"
     whileHover={{ y: -8 }}
   >
-    <span className="inline-block transition-transform duration-300 group-hover:scale-125 mr-2">{emoji}</span>
+    <span className="mr-2 inline-block transition-transform duration-300 group-hover:scale-125">
+      {emoji}
+    </span>
     {title}
   </motion.div>
 );
@@ -95,5 +139,3 @@ const EmailIcon = () => (
 );
 
 export default About;
-
-
