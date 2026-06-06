@@ -51,7 +51,7 @@ const Footer = () => {
               M Atha Dzaki Yunada
             </h2>
             <p className="max-w-md text-sm md:text-base leading-relaxed text-white/70">
-              Front-end focused developer building clean, thoughtful, and engaging web experiences with a strong eye for layout and interaction.
+              Web developer exploring full-stack development, AI integration, and cloud technologies to build impactful digital products.
             </p>
           </motion.div>
 
@@ -96,7 +96,7 @@ const Footer = () => {
           variants={fadeUp}
           className="flex flex-col gap-3 pt-6 text-sm text-white/55 md:flex-row md:items-center md:justify-between"
         >
-          <p>© {year} M Atha Dzaki Yunada. Crafted with React and care.</p>
+          <p>Â© {year} M Atha Dzaki Yunada.</p>
           <p>Available for internships, collaborations, and creative builds.</p>
         </motion.div>
       </motion.div>
