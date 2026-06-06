@@ -60,11 +60,14 @@ const About = () => {
             viewport={viewport}
           >
             <div className="w-full max-w-screen">
-              <div className="pb-5">
-                <RoleCard title="Front-End Web Developer" />
+              <div className="pt-5">
+                <RoleCard title="Full-Stack Development" />
               </div>
               <div className="pt-5">
-                <RoleCard title="Back-End Web Developer" />
+                <RoleCard title="AI Integration" />
+              </div>
+              <div className="pt-5">
+                <RoleCard title="Cloud & Deployment" />
               </div>
             </div>
           </motion.div>

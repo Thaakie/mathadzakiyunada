@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ProjectCard from "./ProjectCard";
@@ -13,17 +13,13 @@ const Works = ({
   showViewAll = false,
   animateImmediately = false,
 }) => {
-  const [currentWorkPage, setCurrentWorkPage] = useState(0);
-  const projectsPerPage = 6;
-  const startIndex = currentWorkPage * projectsPerPage;
-  const maxPage = Math.floor((projects.length - 1) / projectsPerPage);
   const currentProjects = useMemo(() => {
-    if (!showPagination) {
-      return projects;
+    if (showViewAll) {
+      // Limit to 6 projects on homepage preview
+      return projects.slice(0, 6);
     }
-
-    return projects.slice(startIndex, startIndex + projectsPerPage);
-  }, [showPagination, startIndex]);
+    return projects;
+  }, [showViewAll]);
 
   return (
     <section id={sectionId} className="py-20 relative overflow-hidden">
@@ -59,40 +55,6 @@ const Works = ({
             </motion.div>
           ))}
         </motion.div>
-
-        {showPagination && (
-          <motion.div
-            className="flex justify-between mt-8"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          >
-            <motion.button
-              onClick={() => setCurrentWorkPage((prev) => Math.max(prev - 1, 0))}
-              disabled={currentWorkPage === 0}
-              className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
-              whileHover={{ y: -3 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <svg className="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12l4-4m-4 4 4 4" />
-              </svg>
-            </motion.button>
-
-            <motion.button
-              onClick={() => setCurrentWorkPage((prev) => Math.min(prev + 1, maxPage))}
-              disabled={currentWorkPage === maxPage}
-              className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
-              whileHover={{ y: -3 }}
-              whileTap={{ scale: 0.97 }}
-            >
-              <svg className="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
-                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
-              </svg>
-            </motion.button>
-          </motion.div>
-        )}
 
         {showViewAll && (
           <motion.div
