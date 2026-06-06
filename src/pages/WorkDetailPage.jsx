@@ -36,7 +36,7 @@ const WorkDetailPage = () => {
           </motion.div>
 
           <div className="space-y-8 md:space-y-10">
-            <motion.div variants={softScale} className="overflow-hidden rounded-[28px] border border-black/5 bg-white shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+            <motion.div variants={softScale} className="overflow-hidden rounded-[10px] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
               {hasImage ? (
                 <img
                   src={project.image}
@@ -57,7 +57,7 @@ const WorkDetailPage = () => {
               )}
             </motion.div>
 
-            <motion.div variants={fadeUp} className="bg-white/80 backdrop-blur-sm rounded-[28px] border border-white/70 shadow-[0_20px_60px_rgba(0,0,0,0.06)] p-6 md:p-8">
+            <motion.div variants={fadeUp} className="bg-white/80 backdrop-blur-sm rounded-[10px] border-[3px] border-[#2b2b2b] shadow-[0_20px_60px_rgba(0,0,0,0.06)] p-6 md:p-8">
               <p className="text-sm uppercase tracking-[0.3em] text-[#9d896f] mb-3">
                 {project.category}
               </p>
@@ -70,7 +70,7 @@ const WorkDetailPage = () => {
 
               <motion.div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8" initial="hidden" whileInView="visible" viewport={viewport} variants={staggerParent(0.08, 0.04)}>
                 {detailMeta.map(({ key, label }) => (
-                  <motion.div key={key} variants={fadeUp} className="rounded-2xl border border-black/5 bg-[#f9f8f6] px-4 py-4">
+                  <motion.div key={key} variants={fadeUp} className="rounded-[10px] border-2 border-[#2b2b2b]/18 bg-[#f9f8f6] px-4 py-4">
                     <p className="text-xs uppercase tracking-[0.2em] text-[#8d7a66] mb-2">
                       {label}
                     </p>
@@ -114,14 +114,14 @@ const WorkDetailPage = () => {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-xl bg-[#2b2b2b] px-5 py-3 text-sm font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-1 hover:bg-[#1d1d1d]"
+                    className="inline-flex items-center justify-center rounded-[10px] bg-[#2b2b2b] px-5 py-3 text-sm font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-1 hover:bg-[#1d1d1d]"
                     whileHover={{ y: -3 }}
                     whileTap={{ scale: 0.98 }}
                   >
                     Visit live project
                   </motion.a>
                 ) : (
-                  <span className="inline-flex items-center justify-center rounded-xl bg-[#d9d1c8] px-5 py-3 text-sm font-semibold text-[#5e5144]">
+                  <span className="inline-flex items-center justify-center rounded-[10px] bg-[#d9d1c8] px-5 py-3 text-sm font-semibold text-[#5e5144]">
                     Live link not available yet
                   </span>
                 )}
@@ -131,7 +131,7 @@ const WorkDetailPage = () => {
                     href={project.sourceUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center justify-center rounded-xl border border-[#2b2b2b]/15 px-5 py-3 text-sm font-semibold text-[#2b2b2b] no-underline transition-all duration-300 hover:-translate-y-1 hover:border-[#c9b59c] hover:text-[#8b745b]"
+                    className="inline-flex items-center justify-center rounded-[10px] border border-[#2b2b2b]/15 px-5 py-3 text-sm font-semibold text-[#2b2b2b] no-underline transition-all duration-300 hover:-translate-y-1 hover:border-[#c9b59c] hover:text-[#8b745b]"
                     whileHover={{ y: -3 }}
                     whileTap={{ scale: 0.98 }}
                   >
@@ -148,3 +148,11 @@ const WorkDetailPage = () => {
 };
 
 export default WorkDetailPage;
+
+
+
+
+
+
+
+

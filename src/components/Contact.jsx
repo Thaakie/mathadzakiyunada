@@ -60,7 +60,7 @@ const Contact = () => {
     <section id="contact" className="py-20 md:py-24">
       <div className="max-w-[1100px] mx-auto px-6 md:px-8">
         <motion.div
-          className="rounded-[32px] border-[3px] border-[#2b2b2b] bg-[#fbfaf7] px-6 py-8 md:px-10 md:py-12 lg:px-14"
+          className="rounded-[10px] border-[3px] border-[#2b2b2b] bg-[#fbfaf7] px-6 py-8 md:px-10 md:py-12 lg:px-14"
           variants={staggerParent(0.12)}
           initial="hidden"
           whileInView="visible"
@@ -193,3 +193,4 @@ const Contact = () => {
 };
 
 export default Contact;
+

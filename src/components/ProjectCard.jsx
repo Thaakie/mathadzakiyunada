@@ -14,7 +14,7 @@ const ProjectCard = ({ project, index = 0 }) => {
       onClick={() => scrollPageToTop("smooth")}
     >
       <article
-        className="project-card group bg-white rounded-2xl overflow-hidden shadow-sm border border-gray-100/50 transition-all duration-500 ease-out h-full flex flex-col hover:shadow-2xl hover:shadow-black/10 hover:-translate-y-3 hover:border-transparent"
+        className="project-card group bg-white rounded-[10px] overflow-hidden shadow-sm border border-[#2b2b2b]/12 transition-all duration-500 ease-out h-full flex flex-col hover:shadow-2xl hover:shadow-black/10 hover:-translate-y-3 hover:border-[#2b2b2b]/30"
         style={{ transitionDelay: `${index * 80}ms` }}
       >
         <div className="card-image relative overflow-hidden h-40 sm:h-48 md:h-56">
@@ -86,3 +86,5 @@ const ProjectCard = ({ project, index = 0 }) => {
 };
 
 export default ProjectCard;
+
+

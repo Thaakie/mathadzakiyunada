@@ -53,7 +53,7 @@ const InfoItem = ({ icon, text, href }) => (
 const RoleCard = ({ title, emoji }) => (
   <motion.div
     variants={fadeInRight}
-    className="card group bg-white p-6 rounded-xl shadow-sm border border-gray-100
+    className="card group bg-white p-6 rounded-[10px] shadow-sm border border-[#2b2b2b]/12
       font-semibold text-center transition-all duration-500 ease-out
       hover:-translate-y-2 hover:shadow-xl hover:shadow-black/5 hover:border-transparent
       cursor-default"
@@ -95,3 +95,5 @@ const EmailIcon = () => (
 );
 
 export default About;
+
+

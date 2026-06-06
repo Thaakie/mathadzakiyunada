@@ -105,7 +105,7 @@ const Works = ({
           >
             <Link
               to="/works"
-              className="inline-flex items-center gap-2 rounded-xl bg-[#2b2b2b] px-6 py-3 text-sm font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-1 hover:bg-[#1d1d1d]"
+              className="inline-flex items-center gap-2 rounded-[10px] bg-[#2b2b2b] px-6 py-3 text-sm font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-1 hover:bg-[#1d1d1d]"
             >
               View all works
               <span aria-hidden="true">-></span>
@@ -118,3 +118,4 @@ const Works = ({
 };
 
 export default Works;
+

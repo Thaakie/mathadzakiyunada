@@ -34,10 +34,14 @@ const Header = () => {
     return target.pathname || "/";
   };
 
+  const hasHashTarget = (target) =>
+    typeof target === "object" && Boolean(target?.hash);
+
   const handleNavClick = (target, shouldCloseMenu = false) => {
     const targetPath = resolveTargetPath(target);
+    const isHashNavigation = hasHashTarget(target);
 
-    if (targetPath === "/works" || targetPath === "/" || location.pathname === targetPath) {
+    if (!isHashNavigation && (targetPath === "/works" || targetPath === "/" || location.pathname === targetPath)) {
       scrollPageToTop("smooth");
     }
 

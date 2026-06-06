@@ -14,11 +14,19 @@ const scrollToHashTarget = (hash, attempts = 0) => {
   const target = document.getElementById(elementId);
 
   if (target) {
-    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    const headerOffset = 110;
+    const elementTop = target.getBoundingClientRect().top + window.scrollY;
+    const nextTop = Math.max(elementTop - headerOffset, 0);
+
+    window.scrollTo({
+      top: nextTop,
+      left: 0,
+      behavior: "smooth",
+    });
     return;
   }
 
-  if (attempts < 12) {
+  if (attempts < 24) {
     requestAnimationFrame(() => {
       scrollToHashTarget(hash, attempts + 1);
     });
@@ -33,7 +41,6 @@ const ScrollToHash = () => {
       requestAnimationFrame(() => {
         scrollToHashTarget(location.hash);
       });
-
       return;
     }
 

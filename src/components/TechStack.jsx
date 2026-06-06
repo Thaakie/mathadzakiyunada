@@ -72,11 +72,11 @@ const TechCard = ({ tech, index, registerCard }) => {
       ref={(node) => registerCard(node, index)}
       variants={fadeUp}
       data-tech-color={tech.color}
-      className="tech-card group relative bg-white rounded-2xl p-6 border border-gray-100 shadow-sm cursor-default overflow-hidden"
+      className="tech-card group relative bg-white rounded-[10px] p-6 border border-[#2b2b2b]/12 shadow-sm cursor-default overflow-hidden"
     >
       <div
         data-tech-glow
-        className="absolute inset-0 rounded-2xl pointer-events-none"
+        className="absolute inset-0 rounded-[10px] pointer-events-none"
         style={{
           background: `linear-gradient(135deg, ${tech.color}1f, transparent 65%)`,
         }}
@@ -146,3 +146,5 @@ const TechStack = () => {
 };
 
 export default TechStack;
+
+

@@ -24,7 +24,7 @@ const Hero = () => {
           <motion.div variants={fadeUp} className="hero-buttons flex flex-wrap gap-4 justify-center md:justify-start">
             <Link
               to="/works"
-              className="inline-flex items-center gap-2 bg-[#2b2b2b] text-white px-7 py-3.5 rounded-xl 
+              className="inline-flex items-center gap-2 bg-[#2b2b2b] text-white px-7 py-3.5 rounded-[10px] 
                 font-medium transition-all duration-300 ease-out
                 hover:bg-[#1a1a1a] hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20
                 no-underline group"
@@ -36,7 +36,7 @@ const Hero = () => {
             </Link>
             <Link
               to="/#contact"
-              className="inline-flex items-center gap-2 bg-transparent text-[#2b2b2b] px-7 py-3.5 rounded-xl 
+              className="inline-flex items-center gap-2 bg-transparent text-[#2b2b2b] px-7 py-3.5 rounded-[10px] 
                 font-medium border-2 border-[#2b2b2b]/20 transition-all duration-300 ease-out
                 hover:border-[#c9b59c] hover:text-[#c9b59c] hover:-translate-y-1
                 no-underline"
@@ -85,3 +85,4 @@ const Hero = () => {
 };
 
 export default Hero;
+
