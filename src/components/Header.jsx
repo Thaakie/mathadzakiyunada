@@ -1,13 +1,39 @@
 import React, { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { scrollPageToTop } from "../utils/scroll";
+
+const desktopNavItems = [
+  { label: "About", to: "/#about" },
+  { label: "Skills", to: "/#techstack" },
+  { label: "Works", to: "/works" },
+  { label: "Contact", to: "/#contact" },
+];
+
+const mobileNavItems = [
+  { label: "Tentang", to: "/#about" },
+  { label: "Skills", to: "/#techstack" },
+  { label: "Karya", to: "/works" },
+  { label: "Kontak", to: "/#contact" },
+];
 
 const Header = () => {
+  const location = useLocation();
   const [isActive, setIsActive] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
   const toggleMenu = () => setIsActive((prev) => !prev);
   const closeMenu = () => setIsActive(false);
 
-  // Detect scroll
+  const handleNavClick = (targetPath, shouldCloseMenu = false) => {
+    if (targetPath === "/works" || location.pathname === targetPath) {
+      scrollPageToTop("smooth");
+    }
+
+    if (shouldCloseMenu) {
+      closeMenu();
+    }
+  };
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -17,7 +43,6 @@ const Header = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Lock scroll when mobile menu open
   useEffect(() => {
     document.body.style.overflowX = "hidden";
     document.body.style.overflowY = isActive ? "hidden" : "auto";
@@ -30,7 +55,6 @@ const Header = () => {
 
   return (
     <>
-      {/* HEADER */}
       <header
         className={`
           fixed top-0 left-0 w-full z-50
@@ -43,19 +67,17 @@ const Header = () => {
         }}
       >
         <nav className="w-full max-w-[1100px] mx-auto flex items-center justify-between py-4 px-8">
-          {/* Logo */}
-          <a href="#hero" className="font-bold text-lg text-[#2b2b2b] hover:text-[#c9b59c] transition-colors duration-300 no-underline relative z-[201]">
+          <Link to="/" className="font-bold text-lg text-[#2b2b2b] hover:text-[#c9b59c] transition-colors duration-300 no-underline relative z-[201]">
             M Atha Dzaki Yunada
-          </a>
+          </Link>
 
-          {/* Desktop Nav */}
           <ul className="hidden md:flex gap-8 list-none m-0 p-0">
-            {["About", "Skills", "Works", "Contact"].map((item, index) => {
-              const href = ["#about", "#techstack", "#works", "#contact"][index];
+            {desktopNavItems.map((item) => {
               return (
-                <li key={item}>
-                  <a
-                    href={href}
+                <li key={item.label}>
+                  <Link
+                    to={item.to}
+                    onClick={() => handleNavClick(item.to)}
                     className="
                       relative text-[#2b2b2b] opacity-70 font-medium
                       transition-all duration-300 hover:opacity-100 no-underline
@@ -65,14 +87,13 @@ const Header = () => {
                       hover:after:w-full
                     "
                   >
-                    {item}
-                  </a>
+                    {item.label}
+                  </Link>
                 </li>
               );
             })}
           </ul>
 
-          {/* Hamburger */}
           <button onClick={toggleMenu} aria-label="Menu" className="md:hidden bg-transparent border-none cursor-pointer p-2 relative z-[200]">
             <span
               className={`block w-6 h-[2px] bg-[#2b2b2b] transition-all duration-300 ease-out
@@ -90,10 +111,8 @@ const Header = () => {
         </nav>
       </header>
 
-      {/* Spacer supaya konten tidak ketiban header */}
       <div className="h-[80px]" />
 
-      {/* Overlay */}
       <div
         className={`md:hidden fixed inset-0 bg-black/20 backdrop-blur-sm transition-opacity duration-300 z-[40]
           ${isActive ? "opacity-100 pointer-events-auto" : "opacity-0 pointer-events-none"}`}
@@ -101,7 +120,6 @@ const Header = () => {
         aria-hidden="true"
       />
 
-      {/* Mobile Menu */}
       <div
         className={`md:hidden fixed top-0 right-0 h-[100dvh] w-4/5 max-w-[300px]
           bg-white/95 backdrop-blur-xl shadow-2xl
@@ -113,13 +131,12 @@ const Header = () => {
           backdropFilter: "blur(20px)",
         }}
       >
-        {["Tentang", "Skills", "Karya", "Kontak"].map((item, index) => {
-          const href = ["#about", "#techstack", "#works", "#contact"][index];
+        {mobileNavItems.map((item, index) => {
           return (
-            <a
-              key={item}
-              href={href}
-              onClick={closeMenu}
+            <Link
+              key={item.label}
+              to={item.to}
+              onClick={() => handleNavClick(item.to, true)}
               style={{ transitionDelay: `${index * 50}ms` }}
               className="
                 text-[#2b2b2b] text-xl font-medium no-underline
@@ -127,8 +144,8 @@ const Header = () => {
                 hover:text-[#c9b59c] hover:translate-x-2
               "
             >
-              {item}
-            </a>
+              {item.label}
+            </Link>
           );
         })}
       </div>

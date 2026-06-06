@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -13,27 +14,27 @@ const Hero = () => {
           </h1>
           <p className="subtitle text-lg md:text-xl text-[#2b2b2b]/70 leading-relaxed mb-8 max-w-lg mx-auto md:mx-0">Beginner Web Developer — Designing user-friendly and elegant digital interfaces.</p>
           <div className="hero-buttons flex flex-wrap gap-4 justify-center md:justify-start">
-            <a
+            <Link
+              to="/works"
               className="inline-flex items-center gap-2 bg-[#2b2b2b] text-white px-7 py-3.5 rounded-xl 
                 font-medium transition-all duration-300 ease-out
                 hover:bg-[#1a1a1a] hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20
                 no-underline group"
-              href="#works"
             >
               See my works
               <svg className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
-            </a>
-            <a
+            </Link>
+            <Link
+              to="/#contact"
               className="inline-flex items-center gap-2 bg-transparent text-[#2b2b2b] px-7 py-3.5 rounded-xl 
                 font-medium border-2 border-[#2b2b2b]/20 transition-all duration-300 ease-out
                 hover:border-[#c9b59c] hover:text-[#c9b59c] hover:-translate-y-1
                 no-underline"
-              href="#contact"
             >
               Contact me
-            </a>
+            </Link>
           </div>
         </div>
 

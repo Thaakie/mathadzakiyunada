@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100" role="img" aria-labelledby="title3 desc3">
+  <title id="title3">Blackiee — Minimal Logo</title>
+  <desc id="desc3">Minimal black cat mark for branding</desc>
+
+  <g fill="none" stroke="none">
+    <!-- solid rounded head + ears, eyes are negative space -->
+    <path d="M10 40 C10 22, 26 10, 50 10 C74 10, 90 22, 90 40 C90 66, 74 86, 50 86 C26 86, 10 66, 10 40 Z" fill="#0b0b0b"></path>
+    <!-- eyes cutout (use mask/negative space) -->
+    <g fill="#fff">
+      <ellipse cx="38" cy="48" rx="6" ry="9"></ellipse>
+      <ellipse cx="62" cy="48" rx="6" ry="9"></ellipse>
+    </g>
+  </g>
+</svg>
