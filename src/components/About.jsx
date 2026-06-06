@@ -32,13 +32,13 @@ const About = () => {
               variants={fadeUp}
               className="mb-6 text-3xl font-bold text-white md:text-4xl"
             >
-              Building thoughtful interfaces with a warm visual touch.
+              Turning ideas into meaningful digital experiences through web development, AI, and continuous learning.
             </motion.h2>
             <motion.p
               variants={fadeUp}
               className="mb-8 max-w-2xl text-lg leading-relaxed text-white/74"
             >
-              Im an Undergraduate student focused on front-end web development while also working with back-end basics. I care about visual detail, interaction, and clarity, aiming to create web experiences that feel clean, engaging, and easy to use.
+              I'm an Informatics undergraduate passionate about building full-stack web applications, with interests in AI integration, cloud technologies, and modern web development. I enjoy turning complex problems into practical digital solutions that are scalable, intuitive, and impactful.
             </motion.p>
 
             <motion.div

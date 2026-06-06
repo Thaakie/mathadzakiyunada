@@ -28,7 +28,7 @@ export const projects = [
     description:
       "A React-based project that lets users explore Pokemon data with a playful interface. The focus was on API consumption, responsive layout, and a clean browsing flow.",
     image: "/assets/fetchpoke.png",
-    tags: ["ReactJS", "Tailwind CSS", "API"],
+    tags: ["ReactJS", "Tailwind", "API"],
     year: "2024",
     role: "Frontend Developer",
     status: "Live",

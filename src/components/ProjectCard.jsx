@@ -4,7 +4,19 @@ import { scrollPageToTop } from "../utils/scroll";
 
 const ProjectCard = ({ project, index = 0 }) => {
   const hasImage = Boolean(project.image);
-  const hasExternalLink = Boolean(project.liveUrl);
+
+  const getStatusIndicator = (status) => {
+    switch (status?.toLowerCase()) {
+      case "live":
+        return <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-emerald-500 animate-pulse" />;
+      case "prototype":
+        return <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-amber-500 animate-pulse" />;
+      case "private demo":
+        return <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-blue-500 animate-pulse" />;
+      default:
+        return <span className="mr-1.5 h-1.5 w-1.5 rounded-full bg-gray-400" />;
+    }
+  };
 
   return (
     <Link
@@ -14,70 +26,75 @@ const ProjectCard = ({ project, index = 0 }) => {
       onClick={() => scrollPageToTop("smooth")}
     >
       <article
-        className="project-card group relative flex h-full flex-col overflow-hidden rounded-[10px] border border-[#2b2b2b]/12 bg-white shadow-sm transition-all duration-500 ease-out hover:-translate-y-3 hover:border-[#2b2b2b]/30 hover:shadow-2xl hover:shadow-black/10"
+        className="project-card group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-[#2b2b2b]/10 bg-white p-4 shadow-sm transition-all duration-500 ease-out hover:-translate-y-2 hover:border-[#2b2b2b]/25 hover:shadow-xl hover:shadow-black/5"
         style={{ transitionDelay: `${index * 80}ms` }}
       >
-        <div className="card-image relative h-40 overflow-hidden sm:h-48 md:h-56">
+        {/* Floating Card Image Wrapper */}
+        <div className="card-image relative w-full aspect-[4/3] overflow-hidden rounded-[18px] border border-black/5 bg-[#fbfaf7]">
           {hasImage ? (
             <img
               src={project.image}
               alt={`Preview ${project.title}`}
               loading="lazy"
-              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+              className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#f5efe9] via-white to-[#e7ddd1] px-6 text-center">
               <div>
-                <p className="mb-2 text-sm uppercase tracking-[0.3em] text-[#8b7a66]">
+                <p className="mb-2 text-xs uppercase tracking-[0.3em] text-[#8b7a66]">
                   Upcoming
                 </p>
-                <h3 className="text-xl font-bold text-[#2b2b2b]">
+                <h3 className="text-base font-bold text-[#2b2b2b]">
                   {project.title}
                 </h3>
               </div>
             </div>
           )}
+        </div>
 
-          <div className="absolute left-4 top-4">
-            <span className="inline-flex items-center rounded-full bg-white/85 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.2em] text-[#6f5b46] backdrop-blur-sm">
-              {project.status}
+        {/* Card Content Wrapper */}
+        <div className="flex flex-grow flex-row items-stretch mt-4 gap-4">
+          {/* Left Column: Year Divider */}
+          <div className="flex flex-col items-center justify-center pr-4 border-r border-[#2b2b2b]/10 shrink-0 text-center min-w-[55px]">
+            <span className="text-[9px] font-bold uppercase tracking-[0.15em] text-[#2b2b2b]/40 mb-1">
+              Year
+            </span>
+            <span className="text-base font-extrabold text-[#2b2b2b] leading-tight">
+              {project.year === "Next Release" ? "Soon" : project.year}
             </span>
           </div>
 
-          <div className="absolute inset-0 flex items-center justify-center bg-black/35 opacity-0 backdrop-blur-[2px] transition-opacity duration-300 group-hover:opacity-100">
-            <div className="translate-y-3 transform rounded-full bg-white/20 px-4 py-2 opacity-0 transition-all duration-300 ease-out group-hover:translate-y-0 group-hover:opacity-100">
-              <span className="text-sm font-semibold text-white">
-                View details
-              </span>
+          {/* Right Column: Title, Description, Tags */}
+          <div className="flex-grow min-w-0 flex flex-col justify-between">
+            <div>
+              <div className="flex flex-wrap items-center gap-2 mb-1.5 text-[9px] font-bold uppercase tracking-wider text-[#2b2b2b]/50">
+                <span>{project.category}</span>
+                <span>•</span>
+                <span className="inline-flex items-center">
+                  {getStatusIndicator(project.status)}
+                  {project.status}
+                </span>
+              </div>
+
+              <h3 className="card-title text-base font-bold text-[#2b2b2b] transition-colors duration-300 group-hover:text-[#c9b59c] leading-snug mb-1 line-clamp-1">
+                {project.title}
+              </h3>
+
+              <p className="card-desc text-xs leading-relaxed text-[#2b2b2b]/60 line-clamp-2 mb-3">
+                {project.summary}
+              </p>
             </div>
-          </div>
-        </div>
 
-        <div className="card-content flex flex-grow flex-col p-4 md:p-6">
-          <div className="mb-2 flex items-center justify-between gap-4">
-            <h3 className="card-title text-lg font-bold text-[#2b2b2b] transition-colors duration-300 group-hover:text-[#c9b59c] md:text-xl">
-              {project.title}
-            </h3>
-            {hasExternalLink && (
-              <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-[#9d896f]">
-                Live
-              </span>
-            )}
-          </div>
-
-          <p className="card-desc mb-5 flex-grow text-sm leading-relaxed text-[#2b2b2b]/70 md:text-base">
-            {project.summary}
-          </p>
-
-          <div className="card-tags mt-auto flex flex-wrap gap-2">
-            {project.tags.map((tag) => (
-              <span
-                key={`${project.slug}-${tag}`}
-                className="rounded-lg bg-[#f9f8f6] px-3 py-1.5 text-xs font-semibold text-[#666]"
-              >
-                {tag}
-              </span>
-            ))}
+            <div className="card-tags flex flex-wrap gap-1 mt-auto">
+              {project.tags.slice(0, 3).map((tag) => (
+                <span
+                  key={`${project.slug}-${tag}`}
+                  className="rounded-full bg-[#2b2b2b]/5 px-2.5 py-0.5 text-[9px] font-bold tracking-wide text-[#2b2b2b]/50 uppercase"
+                >
+                  {tag}
+                </span>
+              ))}
+            </div>
           </div>
         </div>
       </article>

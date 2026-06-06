@@ -1,0 +1,55 @@
+MOUSE FOLLOWER & TOOLTIP ANIMATIONS
+
+Kami telah berhasil mengoptimalkan mouse follower kustom untuk menampilkan tooltip melayang dengan warna tema dinamis saat kursor diarahkan ke kartu teknologi di bagian Tech Stack, serta efek "SEE MORE" berputar premium di section Works.
+
+=========================================
+FITUR UTAMA YANG DIIMPLEMENTASIKAN
+=========================================
+
+1. EFEK HOVER "SEE MORE" BERPUTAR (SECTION WORKS)
+- Saat mengarahkan kursor ke kartu proyek (.project-card), lingkaran kursor luar (outer follow circle) membesar secara dinamis (scale 2.3x) dan berwarna solid abu-abu gelap (#2b2b2b).
+- Di dalam lingkaran tersebut, ditampilkan dua layer:
+  * Layer Teks Melingkar: Teks emas "SEE MORE • SEE MORE • SEE MORE •" yang berputar secara terus-menerus (infinite linear rotation).
+  * Layer Arrow Tengah: Icon panah diagonal ke kanan-atas (↗) berwarna emas yang tetap diam di tengah kursor.
+- Overlay kaku bawaan kartu (overlay hitam bertuliskan "View Project" statis) telah dihapus sehingga efek hover ini terlihat sangat bersih dan menyatu dengan kursor.
+
+2. TOOLTIP PILL YANG MENEMPEL PADA KURSOR (SECTION TECH STACK)
+- Saat hover ke kartu teknologi, pill berwarna yang berisi deskripsi singkat teknologi menempel langsung di sebelah kanan kursor.
+- Pill ini berada di dalam container outer circle sehingga bergerak dengan efek spring trail yang sangat mulus dan elastis (tidak kaku).
+
+3. SINKRONISASI WARNA TEMA (DYNAMIC THEMING - TECH STACK)
+- Warna border kursor luar dan warna background pill secara otomatis berubah mengikuti warna brand utama teknologi yang sedang di-hover (misal: oranye-merah untuk HTML5, biru untuk CSS3, kuning untuk JavaScript, cyan untuk ReactJS).
+- Ditambahkan efek bayangan (glow shadow) lembut dengan warna yang senada menggunakan format RGBA berdasarkan warna masing-masing tech card.
+
+4. KONTRAK TEKS OTOMATIS (CONTRAST AUTO-ADJUSTMENT)
+- Sistem memiliki logika internal untuk mendeteksi tingkat kecerahan warna dasar. Jika warna background pill terang (seperti warna kuning JavaScript), teks secara otomatis berubah menjadi abu-abu gelap (#2b2b2b) agar tetap mudah dibaca. Sebaliknya, warna lainnya menggunakan teks putih.
+
+5. MENJAGA UKURAN KURSOR
+- Lingkaran luar kursor tetap berukuran normal saat hover di area tech stack, sehingga fokus visual sepenuhnya tertuju pada tooltip informasinya.
+
+=========================================
+DAFTAR DESKRIPSI TECH STACK
+=========================================
+
+- HTML5        : "Structure & Semantics" (Warna: #E34F26)
+- CSS3         : "Modern Styling & Layouts" (Warna: #1572B6)
+- JavaScript   : "Interactive Client Logic" (Warna: #F7DF1E)
+- ReactJS      : "Component UI Library" (Warna: #61DAFB)
+- Tailwind CSS : "Utility-First Styling" (Warna: #06B6D4)
+- Git/GitHub   : "Version Control System" (Warna: #181717)
+
+=========================================
+PERUBAHAN FILE DI WORKSPACE
+=========================================
+
+1. [MouseFollower.jsx]
+   Lokasi: mathadzakiyunada/src/components/MouseFollower.jsx
+   Perubahan: Menambahkan deteksi hover .project-card, menerapkan state isProjectHovered, membuat animasi scale dan background solid #2b2b2b, serta menyematkan SVG teks melingkar berputar dan panah emas.
+
+2. [ProjectCard.jsx]
+   Lokasi: mathadzakiyunada/src/components/ProjectCard.jsx
+   Perubahan: Menghapus elemen Overlay Hover statis ("View Project" dengan background gelap) untuk memberikan ruang bagi custom cursor follower secara visual.
+
+3. [TechStack.jsx]
+   Lokasi: mathadzakiyunada/src/components/TechStack.jsx
+   Perubahan: Menambahkan properti deskripsi singkat pada array data, serta mengoper atribut data-hover-info dan data-tech-color ke wrapper TechCard.
