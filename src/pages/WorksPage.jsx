@@ -21,6 +21,7 @@ const WorksPage = () => {
         subtitle="A growing collection of projects, experiments, and learning builds. Each card opens a dedicated detail page so this portfolio can expand cleanly over time."
         showPagination={false}
         showViewAll={false}
+        animateImmediately={true}
       />
     </section>
   );

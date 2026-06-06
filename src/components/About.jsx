@@ -13,7 +13,7 @@ const About = () => {
         <div className="absolute bottom-0 right-0 h-56 w-56 rounded-full bg-white/5 blur-3xl" />
       </div>
 
-      <div className="relative z-10 max-w-[1100px] mx-auto px-6 md:px-8 lg:px-10">
+      <div className="relative z-10 mx-auto max-w-[1100px] px-6 md:px-8 lg:px-10">
         <div className="grid grid-cols-1 items-start gap-16 lg:grid-cols-[1.2fr_0.8fr]">
           <motion.div
             className="about-content"
@@ -95,18 +95,20 @@ const InfoItem = ({ icon, text, href }) => (
   </motion.div>
 );
 
-const RoleCard = ({ title, emoji }) => (
-  <motion.div
-    variants={fadeInRight}
-    className="card group cursor-default rounded-[10px] border border-[#2b2b2b]/12 bg-[#f7f2ec] p-6 text-center font-semibold text-[#2b2b2b] shadow-sm transition-all duration-500 ease-out hover:-translate-y-2 hover:border-[#2b2b2b]/30 hover:shadow-xl hover:shadow-black/10"
-    whileHover={{ y: -8 }}
-  >
-    <span className="mr-2 inline-block transition-transform duration-300 group-hover:scale-125">
-      {emoji}
-    </span>
-    {title}
-  </motion.div>
-);
+const RoleCard = ({ title, emoji }) => {
+  return (
+    <motion.div
+      variants={fadeInRight}
+      className="card group cursor-default rounded-[10px] border border-[#2b2b2b]/12 bg-[#f7f2ec] p-6 text-center font-semibold text-[#2b2b2b] shadow-sm transition-all duration-500 ease-out hover:-translate-y-2 hover:border-[#2b2b2b]/30 hover:shadow-xl hover:shadow-black/10"
+      whileHover={{ y: -8 }}
+    >
+      <span className="mr-2 inline-block transition-transform duration-300 group-hover:scale-125">
+        {emoji}
+      </span>
+      {title}
+    </motion.div>
+  );
+};
 
 const UserIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">

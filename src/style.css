@@ -73,6 +73,28 @@ body {
   transition: all var(--transition-normal) var(--ease-bounce);
 }
 
+.laggy-hover {
+  --glow-x: 50%;
+  --glow-y: 50%;
+  --glow-opacity: 0;
+  isolation: isolate;
+}
+
+.laggy-hover::before {
+  content: "";
+  position: absolute;
+  inset: -20%;
+  pointer-events: none;
+  z-index: 0;
+  opacity: var(--glow-opacity);
+  background: radial-gradient(circle at var(--glow-x) var(--glow-y), rgba(201, 181, 156, 0.28), rgba(201, 181, 156, 0.12) 22%, rgba(201, 181, 156, 0.05) 38%, transparent 62%);
+  transition: opacity 260ms var(--ease-smooth);
+}
+
+.laggy-hover > * {
+  position: relative;
+  z-index: 1;
+}
 /*HEADER & NAVIGATION*/
 
 .site-header {
@@ -289,7 +311,7 @@ body {
 .card {
   background: var(--white);
   padding: 1.5rem;
-  border-radius: 14px;
+  border-radius: 10px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
   font-weight: 600;
   text-align: center;
@@ -338,7 +360,7 @@ body {
 
 .project-card {
   background: var(--white);
-  border-radius: 18px;
+  border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.04);
   transition: all var(--transition-normal) var(--ease-smooth);
@@ -729,3 +751,5 @@ textarea::placeholder {
 ::-webkit-scrollbar-thumb:hover {
   background: #b8a48b;
 }
+
+

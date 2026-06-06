@@ -6,8 +6,10 @@ import Footer from "./components/Footer";
 import HomePage from "./pages/HomePage";
 import WorksPage from "./pages/WorksPage";
 import WorkDetailPage from "./pages/WorkDetailPage";
+import MouseFollower from "./components/MouseFollower";
 import { pageTransition } from "./utils/motion";
 import { scrollPageToTop } from "./utils/scroll";
+
 
 const scrollToHashTarget = (hash, attempts = 0) => {
   const elementId = hash.replace("#", "");
@@ -67,6 +69,7 @@ function App() {
 
   return (
     <div className="App min-h-screen bg-gradient-to-b from-[#f9f8f6] to-[#efe9e3] text-[#2b2b2b] scroll-smooth">
+      <MouseFollower />
       <ScrollToHash />
       <Header />
       <main>

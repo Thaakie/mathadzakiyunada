@@ -5,7 +5,7 @@ import Swal from "sweetalert2";
 import { fadeUp, staggerParent, viewport } from "../utils/motion";
 
 const fieldClassName =
-  "w-full border-0 border-b border-black/15 bg-transparent px-0 py-3 text-sm text-[#2b2b2b] placeholder:text-[#2b2b2b]/35 focus:border-[#2b2b2b] focus:outline-none focus:ring-0";
+  "w-full border-0 border-b border-black/15 bg-transparent !rounded-none px-0 py-4 text-sm text-[#2b2b2b] placeholder:text-[#2b2b2b]/35 focus:border-[#2b2b2b] focus:!bg-transparent focus:outline-none focus:ring-0 focus:!shadow-none";
 
 const Contact = () => {
   const form = useRef();
@@ -103,7 +103,7 @@ const Contact = () => {
                 variants={fadeUp}
                 className="mb-8 text-lg font-medium text-[#2b2b2b]"
               >
-                Say hello
+                Hello from me 
               </motion.p>
 
               <div className="grid grid-cols-1 gap-x-8 gap-y-6 md:grid-cols-2">
@@ -177,9 +177,9 @@ const Contact = () => {
                 variants={fadeUp}
                 type="submit"
                 disabled={isLoading}
-                className="mt-10 inline-flex w-fit items-center gap-3 border-0 bg-transparent px-0 text-sm font-medium text-[#2b2b2b] transition-opacity duration-300 hover:opacity-60 disabled:cursor-not-allowed disabled:opacity-40"
-                whileHover={{ x: 4 }}
-                whileTap={{ scale: 0.98 }}
+                className="mt-14 inline-flex w-fit items-center gap-3 rounded-[10px] bg-[#2b2b2b] px-6 py-3 text-sm font-semibold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-[#1d1d1d] hover:shadow-lg hover:shadow-black/10 disabled:cursor-not-allowed disabled:opacity-40"
+                whileHover={{ y: -3 }}
+                whileTap={{ scale: 0.97 }}
               >
                 <span>{isLoading ? "Sending..." : "Submit"}</span>
                 <span aria-hidden="true">-&gt;</span>

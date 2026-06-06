@@ -11,6 +11,7 @@ const Works = ({
   subtitle = "Some web development projects and design experiments I have worked on.",
   showPagination = true,
   showViewAll = false,
+  animateImmediately = false,
 }) => {
   const [currentWorkPage, setCurrentWorkPage] = useState(0);
   const projectsPerPage = 6;
@@ -36,8 +37,7 @@ const Works = ({
           className="section-header text-center mb-14"
           variants={staggerParent(0.12)}
           initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
+          {...(animateImmediately ? { animate: "visible" } : { whileInView: "visible", viewport })}
         >
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-4 text-[#2b2b2b]">
             {title}
@@ -51,8 +51,7 @@ const Works = ({
           className="works-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
           variants={staggerParent(0.1, 0.06)}
           initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
+          {...(animateImmediately ? { animate: "visible" } : { whileInView: "visible", viewport })}
         >
           {currentProjects.map((project, index) => (
             <motion.div key={project.id} variants={fadeUp} custom={index}>
