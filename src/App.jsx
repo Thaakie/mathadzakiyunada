@@ -1,26 +1,37 @@
-import React, { useEffect, useLayoutEffect } from "react";
+import React, { useLayoutEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import { initAnimations } from "./animations";
 import HomePage from "./pages/HomePage";
 import WorksPage from "./pages/WorksPage";
 import WorkDetailPage from "./pages/WorkDetailPage";
+import { pageTransition } from "./utils/motion";
 import { scrollPageToTop } from "./utils/scroll";
+
+const scrollToHashTarget = (hash, attempts = 0) => {
+  const elementId = hash.replace("#", "");
+  const target = document.getElementById(elementId);
+
+  if (target) {
+    target.scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
+  }
+
+  if (attempts < 12) {
+    requestAnimationFrame(() => {
+      scrollToHashTarget(hash, attempts + 1);
+    });
+  }
+};
 
 const ScrollToHash = () => {
   const location = useLocation();
 
   useLayoutEffect(() => {
     if (location.hash) {
-      const elementId = location.hash.replace("#", "");
-
       requestAnimationFrame(() => {
-        const target = document.getElementById(elementId);
-
-        if (target) {
-          target.scrollIntoView({ behavior: "smooth", block: "start" });
-        }
+        scrollToHashTarget(location.hash);
       });
 
       return;
@@ -32,24 +43,33 @@ const ScrollToHash = () => {
   return null;
 };
 
+const withPageTransition = (element, routeKey) => (
+  <motion.div
+    key={routeKey}
+    variants={pageTransition}
+    initial="initial"
+    animate="animate"
+    exit="exit"
+  >
+    {element}
+  </motion.div>
+);
+
 function App() {
   const location = useLocation();
-
-  useEffect(() => {
-    const cleanup = initAnimations();
-    return cleanup;
-  }, [location.pathname]);
 
   return (
     <div className="App min-h-screen bg-gradient-to-b from-[#f9f8f6] to-[#efe9e3] text-[#2b2b2b] scroll-smooth">
       <ScrollToHash />
       <Header />
       <main>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/works" element={<WorksPage />} />
-          <Route path="/works/:slug" element={<WorkDetailPage />} />
-        </Routes>
+        <AnimatePresence mode="wait">
+          <Routes location={location} key={location.pathname}>
+            <Route path="/" element={withPageTransition(<HomePage />, "home")} />
+            <Route path="/works" element={withPageTransition(<WorksPage />, "works")} />
+            <Route path="/works/:slug" element={withPageTransition(<WorkDetailPage />, location.pathname)} />
+          </Routes>
+        </AnimatePresence>
       </main>
       <Footer />
     </div>

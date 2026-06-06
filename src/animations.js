@@ -1,219 +1,106 @@
 import { gsap } from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-gsap.registerPlugin(ScrollTrigger);
+export const initTechStackHoverAnimations = (elements = []) => {
+  const cards = elements.filter(Boolean);
 
-// Animation configuration - easily customizable
-const config = {
-  duration: {
-    fast: 0.4,
-    normal: 0.6,
-    slow: 0.8,
-  },
-  ease: {
-    smooth: "power2.out",
-    elastic: "elastic.out(1, 0.5)",
-    bounce: "back.out(1.0)",
-  },
-  stagger: 0.1,
-};
+  if (!cards.length) {
+    return () => {};
+  }
 
-export const initAnimations = () => {
-  let ctx = gsap.context(() => {
-    // =====================
-    // 1. HERO ANIMATIONS
-    // =====================
-    const heroTl = gsap.timeline({
-      defaults: { ease: config.ease.smooth },
+  const cleanups = cards.map((card) => {
+    const icon = card.querySelector("[data-tech-icon]");
+    const glow = card.querySelector("[data-tech-glow]");
+    const color = card.dataset.techColor || "#c9b59c";
+
+    gsap.set(card, {
+      y: 0,
+      boxShadow: "0 10px 30px rgba(0, 0, 0, 0.04)",
+      borderColor: "rgba(0, 0, 0, 0.04)",
     });
 
-    // Set initial states
-    gsap.set([".title", ".subtitle", ".hero-buttons", ".hero-photo"], {
-      opacity: 0,
-    });
-    gsap.set(".title", { y: 40 });
-    gsap.set(".subtitle", { y: 30 });
-    gsap.set(".hero-buttons", { y: 20, scale: 0.95 });
-    gsap.set(".hero-photo", { x: 40, scale: 0.95 });
+    if (glow) {
+      gsap.set(glow, { opacity: 0, scale: 0.96 });
+    }
 
-    // Animate hero elements
-    heroTl
-      .to(".title", {
-        y: 0,
-        opacity: 1,
-        duration: config.duration.slow,
-      })
-      .to(
-        ".hero-photo",
-        {
-          x: 0,
-          scale: 1,
-          opacity: 1,
-          duration: config.duration.slow,
-        },
-        "-=0.0"
-      )
-      .to(
-        ".subtitle",
-        {
-          y: 0,
-          opacity: 1,
-          duration: config.duration.normal,
-        },
-        "-=0.5"
-      )
-      .to(
-        ".hero-buttons",
-        {
-          y: 0,
-          scale: 1,
-          opacity: 1,
-          duration: config.duration.fast,
-        },
-        "-=0.4"
-      );
+    if (icon) {
+      gsap.set(icon, { scale: 1, rotate: 0, transformOrigin: "50% 50%" });
+    }
 
-    // =====================
-    // 2. SCROLL ANIMATIONS
-    // =====================
-    const createScrollAnimation = (selector, options = {}) => {
-      const elements = document.querySelectorAll(selector);
-      if (!elements.length) return;
-
-      elements.forEach((el, index) => {
-        gsap.set(el, { opacity: 0, y: 50 });
-
-        gsap.to(el, {
-          scrollTrigger: {
-            trigger: el,
-            start: "top 80%",
-            end: "top 20%",
-            toggleActions: "play none none reverse",
-          },
-          opacity: 1,
-          y: 0,
-          duration: options.duration || config.duration.normal,
-          delay: options.stagger ? index * config.stagger : options.delay || 0,
-          ease: config.ease.smooth,
-        });
+    const handleEnter = () => {
+      gsap.to(card, {
+        y: -10,
+        boxShadow: "0 24px 48px rgba(0, 0, 0, 0.08)",
+        borderColor: `${color}22`,
+        duration: 0.35,
+        ease: "power2.out",
+        overwrite: "auto",
       });
+
+      if (icon) {
+        gsap.to(icon, {
+          scale: 1.12,
+          rotate: -4,
+          duration: 0.35,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      }
+
+      if (glow) {
+        gsap.to(glow, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.35,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      }
     };
 
-    // Apply scroll animations to sections
-    createScrollAnimation(".section-header");
-    createScrollAnimation(".about-content");
-    createScrollAnimation(".about-cards .card", { stagger: true });
-    createScrollAnimation(".contact-form");
-
-    // =====================
-    // 3. TECH STACK ANIMATIONS
-    // =====================
-    const techCards = document.querySelectorAll(".tech-card");
-    if (techCards.length) {
-      gsap.set(techCards, { opacity: 0, y: 60, scale: 0.95 });
-
-      ScrollTrigger.batch(techCards, {
-        start: "top 90%",
-        onEnter: (batch) => {
-          gsap.to(batch, {
-            opacity: 1,
-            y: 0,
-            scale: 1,
-            stagger: 0.08,
-            duration: config.duration.normal,
-            ease: config.ease.smooth,
-          });
-        },
-        onLeaveBack: (batch) => {
-          gsap.to(batch, {
-            opacity: 0,
-            y: 40,
-            scale: 0.95,
-            stagger: 0.05,
-            duration: config.duration.fast,
-          });
-        },
+    const handleLeave = () => {
+      gsap.to(card, {
+        y: 0,
+        boxShadow: "0 10px 30px rgba(0, 0, 0, 0.04)",
+        borderColor: "rgba(0, 0, 0, 0.04)",
+        duration: 0.4,
+        ease: "power2.out",
+        overwrite: "auto",
       });
 
-      // Animate progress bars when in view
-      const progressBars = document.querySelectorAll(".progress-bar-fill");
-      progressBars.forEach((bar) => {
-        const width = bar.style.width;
-        gsap.set(bar, { width: "0%" });
-
-        ScrollTrigger.create({
-          trigger: bar,
-          start: "top 90%",
-          onEnter: () => {
-            gsap.to(bar, {
-              width: width,
-              duration: 1,
-              ease: "power2.out",
-            });
-          },
-          onLeaveBack: () => {
-            gsap.to(bar, {
-              width: "0%",
-              duration: 0.5,
-            });
-          },
+      if (icon) {
+        gsap.to(icon, {
+          scale: 1,
+          rotate: 0,
+          duration: 0.4,
+          ease: "power2.out",
+          overwrite: "auto",
         });
-      });
-    }
+      }
 
-    // =====================
-    // 4. PROJECT CARDS ANIMATION
-    // =====================
-    const projectCards = document.querySelectorAll(".project-card");
-    if (projectCards.length) {
-      gsap.set(projectCards, { opacity: 0, y: 60 });
+      if (glow) {
+        gsap.to(glow, {
+          opacity: 0,
+          scale: 0.96,
+          duration: 0.4,
+          ease: "power2.out",
+          overwrite: "auto",
+        });
+      }
+    };
 
-      ScrollTrigger.batch(projectCards, {
-        start: "top 88%",
-        onEnter: (batch) => {
-          gsap.to(batch, {
-            opacity: 1,
-            y: 0,
-            stagger: 0.12,
-            duration: config.duration.slow,
-            ease: config.ease.smooth,
-          });
-        },
-        onLeaveBack: (batch) => {
-          gsap.to(batch, {
-            opacity: 0,
-            y: 50,
-            stagger: 0.05,
-            duration: config.duration.fast,
-          });
-        },
-      });
-    }
+    card.addEventListener("mouseenter", handleEnter);
+    card.addEventListener("mouseleave", handleLeave);
 
-    // =====================
-    // 5. PERSONAL INFO ANIMATION
-    // =====================
-    const infoItems = document.querySelectorAll(".info-item");
-    if (infoItems.length) {
-      gsap.set(infoItems, { opacity: 0, x: -20 });
-
-      ScrollTrigger.batch(infoItems, {
-        start: "top 90%",
-        onEnter: (batch) => {
-          gsap.to(batch, {
-            opacity: 1,
-            x: 0,
-            stagger: 0.1,
-            duration: config.duration.normal,
-            ease: config.ease.smooth,
-          });
-        },
-      });
-    }
-
-    // Refresh ScrollTrigger after all animations created
-    ScrollTrigger.refresh();
+    return () => {
+      card.removeEventListener("mouseenter", handleEnter);
+      card.removeEventListener("mouseleave", handleLeave);
+      gsap.killTweensOf(card);
+      if (icon) gsap.killTweensOf(icon);
+      if (glow) gsap.killTweensOf(glow);
+    };
   });
 
-  return () => ctx.revert();
+  return () => {
+    cleanups.forEach((cleanup) => cleanup());
+  };
 };

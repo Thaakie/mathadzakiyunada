@@ -3,17 +3,19 @@ import { Link, useLocation } from "react-router-dom";
 import { scrollPageToTop } from "../utils/scroll";
 
 const desktopNavItems = [
-  { label: "About", to: "/#about" },
-  { label: "Skills", to: "/#techstack" },
+  { label: "Home", to: "/" },
+  { label: "About", to: { pathname: "/", hash: "#about" } },
+  { label: "Skills", to: { pathname: "/", hash: "#techstack" } },
   { label: "Works", to: "/works" },
-  { label: "Contact", to: "/#contact" },
+  { label: "Contact", to: { pathname: "/", hash: "#contact" } },
 ];
 
 const mobileNavItems = [
-  { label: "Tentang", to: "/#about" },
-  { label: "Skills", to: "/#techstack" },
+  { label: "Home", to: "/" },
+  { label: "Tentang", to: { pathname: "/", hash: "#about" } },
+  { label: "Skills", to: { pathname: "/", hash: "#techstack" } },
   { label: "Karya", to: "/works" },
-  { label: "Kontak", to: "/#contact" },
+  { label: "Kontak", to: { pathname: "/", hash: "#contact" } },
 ];
 
 const Header = () => {
@@ -24,8 +26,18 @@ const Header = () => {
   const toggleMenu = () => setIsActive((prev) => !prev);
   const closeMenu = () => setIsActive(false);
 
-  const handleNavClick = (targetPath, shouldCloseMenu = false) => {
-    if (targetPath === "/works" || location.pathname === targetPath) {
+  const resolveTargetPath = (target) => {
+    if (typeof target === "string") {
+      return target;
+    }
+
+    return target.pathname || "/";
+  };
+
+  const handleNavClick = (target, shouldCloseMenu = false) => {
+    const targetPath = resolveTargetPath(target);
+
+    if (targetPath === "/works" || targetPath === "/" || location.pathname === targetPath) {
       scrollPageToTop("smooth");
     }
 

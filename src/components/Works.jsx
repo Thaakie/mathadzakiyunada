@@ -1,7 +1,9 @@
 import React, { useMemo, useState } from "react";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import ProjectCard from "./ProjectCard";
 import { projects } from "../data/projects";
+import { fadeUp, staggerParent, viewport } from "../utils/motion";
 
 const Works = ({
   sectionId = "works",
@@ -30,87 +32,85 @@ const Works = ({
       </div>
 
       <div className="max-w-[1100px] mx-auto px-4 md:px-8 relative z-10">
-        <div className="section-header text-center mb-14">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#2b2b2b]">
+        <motion.div
+          className="section-header text-center mb-14"
+          variants={staggerParent(0.12)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
+          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-4 text-[#2b2b2b]">
             {title}
-          </h2>
-          <p className="section-subtitle text-lg text-[#2b2b2b]/60 max-w-2xl mx-auto">
+          </motion.h2>
+          <motion.p variants={fadeUp} className="section-subtitle text-lg text-[#2b2b2b]/60 max-w-2xl mx-auto">
             {subtitle}
-          </p>
-        </div>
+          </motion.p>
+        </motion.div>
 
-        <div className="works-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+        <motion.div
+          className="works-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8"
+          variants={staggerParent(0.1, 0.06)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           {currentProjects.map((project, index) => (
-            <ProjectCard key={project.id} project={project} index={index} />
+            <motion.div key={project.id} variants={fadeUp} custom={index}>
+              <ProjectCard project={project} index={index} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
 
         {showPagination && (
-          <div className="flex justify-between mt-8">
-            <button
-              onClick={() =>
-                setCurrentWorkPage((prev) => Math.max(prev - 1, 0))
-              }
+          <motion.div
+            className="flex justify-between mt-8"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
+            <motion.button
+              onClick={() => setCurrentWorkPage((prev) => Math.max(prev - 1, 0))}
               disabled={currentWorkPage === 0}
               className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.97 }}
             >
-              <svg
-                className="w-6 h-6 text-gray-800"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M5 12h14M5 12l4-4m-4 4 4 4"
-                />
+              <svg className="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 12h14M5 12l4-4m-4 4 4 4" />
               </svg>
-            </button>
+            </motion.button>
 
-            <button
-              onClick={() =>
-                setCurrentWorkPage((prev) => Math.min(prev + 1, maxPage))
-              }
+            <motion.button
+              onClick={() => setCurrentWorkPage((prev) => Math.min(prev + 1, maxPage))}
               disabled={currentWorkPage === maxPage}
               className="px-4 py-2 rounded bg-gray-200 hover:bg-gray-300 disabled:opacity-50"
+              whileHover={{ y: -3 }}
+              whileTap={{ scale: 0.97 }}
             >
-              <svg
-                className="w-6 h-6 text-gray-800"
-                aria-hidden="true"
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                fill="none"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke="currentColor"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M19 12H5m14 0-4 4m4-4-4-4"
-                />
+              <svg className="w-6 h-6 text-gray-800" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
+                <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 12H5m14 0-4 4m4-4-4-4" />
               </svg>
-            </button>
-          </div>
+            </motion.button>
+          </motion.div>
         )}
 
         {showViewAll && (
-          <div className="mt-10 flex justify-center">
+          <motion.div
+            className="mt-10 flex justify-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={viewport}
+            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+          >
             <Link
               to="/works"
               className="inline-flex items-center gap-2 rounded-xl bg-[#2b2b2b] px-6 py-3 text-sm font-semibold text-white no-underline transition-all duration-300 hover:-translate-y-1 hover:bg-[#1d1d1d]"
             >
               View all works
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true">-></span>
             </Link>
-          </div>
+          </motion.div>
         )}
       </div>
     </section>

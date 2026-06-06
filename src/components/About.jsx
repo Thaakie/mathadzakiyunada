@@ -1,44 +1,44 @@
 import React from "react";
+import { motion } from "framer-motion";
+import { fadeInLeft, fadeInRight, fadeUp, staggerParent, viewport } from "../utils/motion";
 
 const About = () => {
   return (
     <section id="about" className="py-20">
       <div className="max-w-[1100px] mx-auto px-8 grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-16 items-start">
-        {/* Main Content */}
-        <div className="about-content">
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 text-[#2b2b2b]">About me</h2>
-          <p className="text-lg text-[#2b2b2b]/80 leading-relaxed mb-8">
+        <motion.div className="about-content" variants={staggerParent(0.12)} initial="hidden" whileInView="visible" viewport={viewport}>
+          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-6 text-[#2b2b2b]">
+            About me
+          </motion.h2>
+          <motion.p variants={fadeUp} className="text-lg text-[#2b2b2b]/80 leading-relaxed mb-8">
             Im an Undergraduate student and focus on front-end web development while also working with back-end basics. I care about visual detail and user interaction, aiming to create functional and enjoyable web experiences.
-          </p>
+          </motion.p>
 
-          {/* Personal Info Grid */}
-          <div className="personal-info-grid grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-gray-100">
+          <motion.div variants={staggerParent(0.1, 0.08)} className="personal-info-grid grid grid-cols-1 sm:grid-cols-2 gap-6 pt-6 border-t border-gray-100">
             <InfoItem icon={<UserIcon />} text="M Atha Dzaki Yunada" />
             <InfoItem icon={<CalendarIcon />} text="Student of University Teknokrat Indonesia" />
             <InfoItem icon={<LocationIcon />} text="Bandar Lampung" />
             <InfoItem icon={<EmailIcon />} text="atha468@gmail.com" href="mailto:atha468@gmail.com" />
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        {/* Role Cards */}
-        <div className="about-cards flex justify-center items-center flex-col gap-4 h-full ">
+        <motion.div className="about-cards flex justify-center items-center flex-col gap-4 h-full" variants={staggerParent(0.14, 0.12)} initial="hidden" whileInView="visible" viewport={viewport}>
           <div className="w-full max-w-screen">
             <div className="pb-5">
-              <RoleCard title="Front-End Web Developer" delay={0} />
+              <RoleCard title="Front-End Web Developer" />
             </div>
             <div className="pt-5">
-              <RoleCard title="Basic Back-End Web Developer" delay={100} />
+              <RoleCard title="Back-End Web Developer" />
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );
 };
 
-// Info Item Component
 const InfoItem = ({ icon, text, href }) => (
-  <div className="info-item flex items-center gap-4 group cursor-default">
+  <motion.div variants={fadeInLeft} className="info-item flex items-center gap-4 group cursor-default">
     <div className="info-icon text-[#c9b59c] transition-transform duration-300 group-hover:scale-110">{icon}</div>
     {href ? (
       <a href={href} className="text-[#2b2b2b] no-underline transition-colors duration-300 hover:text-[#c9b59c]">
@@ -47,24 +47,23 @@ const InfoItem = ({ icon, text, href }) => (
     ) : (
       <span className="text-[#2b2b2b]">{text}</span>
     )}
-  </div>
+  </motion.div>
 );
 
-// Role Card Component
-const RoleCard = ({ title, emoji, delay }) => (
-  <div
+const RoleCard = ({ title, emoji }) => (
+  <motion.div
+    variants={fadeInRight}
     className="card group bg-white p-6 rounded-xl shadow-sm border border-gray-100
       font-semibold text-center transition-all duration-500 ease-out
       hover:-translate-y-2 hover:shadow-xl hover:shadow-black/5 hover:border-transparent
       cursor-default"
-    style={{ transitionDelay: `${delay}ms` }}
+    whileHover={{ y: -8 }}
   >
     <span className="inline-block transition-transform duration-300 group-hover:scale-125 mr-2">{emoji}</span>
     {title}
-  </div>
+  </motion.div>
 );
 
-// Icon Components
 const UserIcon = () => (
   <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
     <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />

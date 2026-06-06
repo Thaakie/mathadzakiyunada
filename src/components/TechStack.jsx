@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { motion } from "framer-motion";
+import { initTechStackHoverAnimations } from "../animations";
+import { fadeUp, staggerParent, viewport } from "../utils/motion";
 
-// Tech Stack Data - Easily customizable
 const techStackData = [
   {
     name: "HTML5",
@@ -64,60 +66,80 @@ const techStackData = [
   },
 ];
 
-// Tech Card Component
-const TechCard = ({ tech, index }) => {
+const TechCard = ({ tech, index, registerCard }) => {
   return (
-    <div
-      className="tech-card group relative bg-white rounded-2xl p-6 
-        border border-gray-100 shadow-sm
-        hover:shadow-xl hover:shadow-black/5 hover:-translate-y-2 hover:border-transparent
-        transition-all duration-500 ease-out cursor-default"
-      style={{ transitionDelay: `${index * 50}ms` }}
+    <motion.div
+      ref={(node) => registerCard(node, index)}
+      variants={fadeUp}
+      data-tech-color={tech.color}
+      className="tech-card group relative bg-white rounded-2xl p-6 border border-gray-100 shadow-sm cursor-default overflow-hidden"
     >
-      {/* Gradient Border on Hover */}
       <div
-        className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10"
+        data-tech-glow
+        className="absolute inset-0 rounded-2xl pointer-events-none"
         style={{
-          background: `linear-gradient(135deg, ${tech.color}20, transparent)`,
+          background: `linear-gradient(135deg, ${tech.color}1f, transparent 65%)`,
         }}
       />
 
-      {/* Icon */}
-      <div className="mb-4 transition-transform duration-500 group-hover:scale-110" style={{ color: tech.color }}>
+      <div data-tech-icon className="relative z-10 mb-4" style={{ color: tech.color }}>
         {tech.icon}
       </div>
 
-      {/* Tech Name & Proficiency Label */}
-      <div className="flex items-center justify-between">
+      <div className="relative z-10 flex items-center justify-between gap-4">
         <span className="font-semibold text-[#2b2b2b]">{tech.name}</span>
-        <span className="text-sm text-[#2b2b2b]/60">— {tech.proficiencyLabel}</span>
+        <span className="text-sm text-[#2b2b2b]/60">- {tech.proficiencyLabel}</span>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
 const TechStack = () => {
+  const cardRefs = useRef([]);
+
+  useEffect(() => {
+    const cleanup = initTechStackHoverAnimations(cardRefs.current);
+    return cleanup;
+  }, []);
+
+  const registerCard = (node, index) => {
+    cardRefs.current[index] = node;
+  };
+
   return (
     <section id="techstack" className="py-20 relative overflow-hidden">
-      {/* Background Decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 -left-20 w-72 h-72 bg-[#c9b59c]/10 rounded-full blur-3xl" />
         <div className="absolute bottom-1/4 -right-20 w-96 h-96 bg-[#c9b59c]/5 rounded-full blur-3xl" />
       </div>
 
       <div className="max-w-[1100px] mx-auto px-8 relative z-10">
-        {/* Section Header */}
-        <div className="section-header text-center mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4 text-[#2b2b2b]">Tech Stack</h2>
-          <p className="text-lg text-[#2b2b2b]/60 max-w-xl mx-auto">Technologies and tools I have learned and used in web development.</p>
-        </div>
+        <motion.div
+          className="section-header text-center mb-16"
+          variants={staggerParent(0.12)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
+          <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-4 text-[#2b2b2b]">
+            Tech Stack
+          </motion.h2>
+          <motion.p variants={fadeUp} className="text-lg text-[#2b2b2b]/60 max-w-xl mx-auto">
+            Technologies and tools I have learned and used in web development.
+          </motion.p>
+        </motion.div>
 
-        {/* Tech Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          variants={staggerParent(0.1, 0.08)}
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewport}
+        >
           {techStackData.map((tech, index) => (
-            <TechCard key={tech.name} tech={tech} index={index} />
+            <TechCard key={tech.name} tech={tech} index={index} registerCard={registerCard} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
