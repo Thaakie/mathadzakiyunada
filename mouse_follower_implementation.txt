@@ -1,55 +1,82 @@
 MOUSE FOLLOWER & TOOLTIP ANIMATIONS
 
-Kami telah berhasil mengoptimalkan mouse follower kustom untuk menampilkan tooltip melayang dengan warna tema dinamis saat kursor diarahkan ke kartu teknologi di bagian Tech Stack, serta efek "SEE MORE" berputar premium di section Works.
+Kami telah berhasil mengoptimalkan mouse follower kustom untuk menampilkan tooltip melayang dengan warna tema dinamis saat kursor diarahkan ke kartu teknologi di bagian Tech Stack, efek "SEE MORE" berputar premium di section Works, serta transisi adaptif otomatis (dark/light theme) menyesuaikan background halaman.
 
 =========================================
 FITUR UTAMA YANG DIIMPLEMENTASIKAN
 =========================================
 
-1. EFEK HOVER "SEE MORE" BERPUTAR (SECTION WORKS)
-- Saat mengarahkan kursor ke kartu proyek (.project-card), lingkaran kursor luar (outer follow circle) membesar secara dinamis (scale 2.3x) dan berwarna solid abu-abu gelap (#2b2b2b).
+1. KATEGORISASI TECH STACK YANG PREMIUM
+- Tech Stack telah dikelompokkan ke dalam 4 kategori terpisah daripada satu grid panjang yang kaku:
+  * Frontend: HTML5, CSS3, JavaScript, React, Tailwind CSS, TanStack Query
+  * Backend: Node.js, Express.js, PostgreSQL, REST API
+  * AI & Cloud: Google Gemini, Microsoft Azure, Cloud Run
+  * Version Control: GitHub, Git
+- Setiap kategori dipisahkan oleh header kategori minimalis dengan font kapital kecil, spasi huruf lebar (tracking-[0.3em]), warna emas (#c9b59c), dan garis pemisah horizontal yang elegan.
+- Semua 15 kartu teknologi dilengkapi dengan ikon SVG kustom yang tajam, nama teknologi, label profisiensi (Advanced, Upper-Intermediate, Intermediate, Beginner), deskripsi singkat hover, dan skema warna brand yang akurat.
+
+2. CUSTOM SCROLLBAR (WEBKIT) YANG MODERN
+- Scrollbar browser default yang kaku telah disesuaikan menjadi scrollbar ultra-modern yang tipis (8px) dan rounded-pill.
+- Menggunakan track transparan (tidak memakan ruang visual halaman) dan thumb berwarna emas portofolio (#c9b59c) dengan efek padding border sehingga melayang di tepi halaman.
+
+3. TRANSISI ADAPTIF BACKGROUND (ABOUT & FOOTER)
+- Sistem kursor secara otomatis mendeteksi ketika kursor memasuki bagian/section dengan latar belakang gelap (seperti section #about yang berwarna hitam-coklat #1f1c18, dan section footer).
+- Ketika berada di area gelap:
+  * Inner dot kursor berubah warna menjadi emas (#c9b59c) yang bercahaya dan sangat terlihat.
+  * Border outer follow circle berubah warna menjadi putih bersih (#ffffff) untuk memberikan kontras yang maksimal dan mewah.
+  * Saat melakukan hover di area gelap ini, background kursor luar bertransisi menjadi krem transparan (rgba(247, 242, 236, 0.15)) dan border tetap putih.
+- Transisi ini berjalan sangat mulus berkat interpolasi pegas (spring physics) dari Framer Motion.
+
+4. EFEK HOVER "SEE MORE" BERPUTAR (SECTION WORKS)
+- Saat mengarahkan kursor ke kartu proyek (.project-card), lingkaran kursor luar membesar secara dinamis (scale 2.3x) dan berwarna solid abu-abu gelap (#2b2b2b).
 - Di dalam lingkaran tersebut, ditampilkan dua layer:
   * Layer Teks Melingkar: Teks emas "SEE MORE • SEE MORE • SEE MORE •" yang berputar secara terus-menerus (infinite linear rotation).
   * Layer Arrow Tengah: Icon panah diagonal ke kanan-atas (↗) berwarna emas yang tetap diam di tengah kursor.
 - Overlay kaku bawaan kartu (overlay hitam bertuliskan "View Project" statis) telah dihapus sehingga efek hover ini terlihat sangat bersih dan menyatu dengan kursor.
 
-2. TOOLTIP PILL YANG MENEMPEL PADA KURSOR (SECTION TECH STACK)
+5. TOOLTIP PILL YANG MENEMPEL PADA KURSOR (SECTION TECH STACK)
 - Saat hover ke kartu teknologi, pill berwarna yang berisi deskripsi singkat teknologi menempel langsung di sebelah kanan kursor.
 - Pill ini berada di dalam container outer circle sehingga bergerak dengan efek spring trail yang sangat mulus dan elastis (tidak kaku).
 
-3. SINKRONISASI WARNA TEMA (DYNAMIC THEMING - TECH STACK)
-- Warna border kursor luar dan warna background pill secara otomatis berubah mengikuti warna brand utama teknologi yang sedang di-hover (misal: oranye-merah untuk HTML5, biru untuk CSS3, kuning untuk JavaScript, cyan untuk ReactJS).
+6. SINKRONISASI WARNA TEMA (DYNAMIC THEMING - TECH STACK)
+- Warna border kursor luar dan warna background pill secara otomatis berubah mengikuti warna brand utama teknologi yang sedang di-hover.
 - Ditambahkan efek bayangan (glow shadow) lembut dengan warna yang senada menggunakan format RGBA berdasarkan warna masing-masing tech card.
 
-4. KONTRAK TEKS OTOMATIS (CONTRAST AUTO-ADJUSTMENT)
+7. KONTRAK TEKS OTOMATIS (CONTRAST AUTO-ADJUSTMENT)
 - Sistem memiliki logika internal untuk mendeteksi tingkat kecerahan warna dasar. Jika warna background pill terang (seperti warna kuning JavaScript), teks secara otomatis berubah menjadi abu-abu gelap (#2b2b2b) agar tetap mudah dibaca. Sebaliknya, warna lainnya menggunakan teks putih.
 
-5. MENJAGA UKURAN KURSOR
-- Lingkaran luar kursor tetap berukuran normal saat hover di area tech stack, sehingga fokus visual sepenuhnya tertuju pada tooltip informasinya.
-
 =========================================
-DAFTAR DESKRIPSI TECH STACK
+DAFTAR DESKRIPSI & BRAND COLOR TECH STACK
 =========================================
 
-- HTML5        : "Structure & Semantics" (Warna: #E34F26)
-- CSS3         : "Modern Styling & Layouts" (Warna: #1572B6)
-- JavaScript   : "Interactive Client Logic" (Warna: #F7DF1E)
-- ReactJS      : "Component UI Library" (Warna: #61DAFB)
-- Tailwind CSS : "Utility-First Styling" (Warna: #06B6D4)
-- Git/GitHub   : "Version Control System" (Warna: #181717)
+- HTML5            : "Structure & Semantics" (Warna: #E34F26)
+- CSS3             : "Modern Styling & Layouts" (Warna: #1572B6)
+- JavaScript       : "Interactive Client Logic" (Warna: #F7DF1E)
+- React            : "Component UI Library" (Warna: #61DAFB)
+- Tailwind CSS     : "Utility-First Styling" (Warna: #06B6D4)
+- TanStack Query   : "Async State Management" (Warna: #FF4154)
+- Node.js          : "Server-side JS Runtime" (Warna: #339933)
+- Express.js       : "Minimalist Web Framework" (Warna: #404040)
+- PostgreSQL       : "Robust SQL Database" (Warna: #4169E1)
+- REST API         : "Standardized Web API Design" (Warna: #009688)
+- Google Gemini    : "Generative AI Integration" (Warna: #387CFF)
+- Microsoft Azure  : "Enterprise Cloud Services" (Warna: #0078D4)
+- Cloud Run        : "Serverless Container Platform" (Warna: #4285F4)
+- GitHub           : "Cloud Repository Platform" (Warna: #181717)
+- Git              : "Version Control Engine" (Warna: #F05032)
 
 =========================================
 PERUBAHAN FILE DI WORKSPACE
 =========================================
 
-1. [MouseFollower.jsx]
-   Lokasi: mathadzakiyunada/src/components/MouseFollower.jsx
-   Perubahan: Menambahkan deteksi hover .project-card, menerapkan state isProjectHovered, membuat animasi scale dan background solid #2b2b2b, serta menyematkan SVG teks melingkar berputar dan panah emas.
+1. [style.css]
+   Lokasi: mathadzakiyunada/src/style.css
+   Perubahan: Memperbarui webkit scrollbar menjadi desain custom yang tipis (8px), rounded, dan menggunakan track transparan dengan hover state.
 
-2. [ProjectCard.jsx]
-   Lokasi: mathadzakiyunada/src/components/ProjectCard.jsx
-   Perubahan: Menghapus elemen Overlay Hover statis ("View Project" dengan background gelap) untuk memberikan ruang bagi custom cursor follower secara visual.
-
-3. [TechStack.jsx]
+2. [TechStack.jsx]
    Lokasi: mathadzakiyunada/src/components/TechStack.jsx
-   Perubahan: Menambahkan properti deskripsi singkat pada array data, serta mengoper atribut data-hover-info dan data-tech-color ke wrapper TechCard.
+   Perubahan: Mengelompokkan seluruh data tech stack ke dalam struktur kategori (Frontend, Backend, AI & Cloud, Version Control), menambahkan 9 teknologi baru dengan deskripsi dan SVG kustom, serta memperbarui looping rendering agar terbagi menjadi 4 sub-grid.
+
+3. [MouseFollower.jsx]
+   Lokasi: mathadzakiyunada/src/components/MouseFollower.jsx
+   Perubahan: Menambahkan deteksi area gelap (isDarkBg) berdasarkan kecocokan selektor target.closest('#about') dan target.closest('footer'). Mengubah target warna ring luar menjadi putih bersih (#ffffff) di area gelap untuk memberikan visual kontras premium.

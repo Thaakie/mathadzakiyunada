@@ -9,6 +9,7 @@ export default function MouseFollower() {
   const [isVisible, setIsVisible] = useState(false);
   const [hoverText, setHoverText] = useState("");
   const [hoverColor, setHoverColor] = useState("");
+  const [isDarkBg, setIsDarkBg] = useState(false);
 
   // Mouse coordinates (start offscreen)
   const mouseX = useMotionValue(-100);
@@ -56,6 +57,10 @@ export default function MouseFollower() {
       const target = e.target;
       if (!target) return;
 
+      // Detect dark background section (About & Footer)
+      const isDarkSection = !!(target.closest("#about") || target.closest("footer"));
+      setIsDarkBg(isDarkSection);
+
       // Detect Project Card hover
       const isProjectCard = target.closest(".project-card");
       setIsProjectHovered(!!isProjectCard);
@@ -102,15 +107,25 @@ export default function MouseFollower() {
     <>
       {/* Outer follow circle with attached Tooltip Pill */}
       <motion.div
-        className="fixed top-0 left-0 w-8 h-8 -ml-4 -mt-4 rounded-full border border-[#c9b59c] pointer-events-none z-[99999] will-change-transform flex items-center justify-center overflow-visible"
+        className="fixed top-0 left-0 w-8 h-8 -ml-4 -mt-4 rounded-full border pointer-events-none z-[99999] will-change-transform flex items-center justify-center overflow-visible"
         style={{
           x: followerX,
           y: followerY,
         }}
         animate={{
           scale: isProjectHovered ? 2.3 : (isHovered ? 1.8 : 1),
-          backgroundColor: isProjectHovered ? "#2b2b2b" : (isHovered ? "rgba(201, 181, 156, 0.25)" : "rgba(201, 181, 156, 0)"),
-          borderColor: isProjectHovered ? "#2b2b2b" : (hoverText ? (hoverColor || "#c9b59c") : (isHovered ? "#2b2b2b" : "#c9b59c")),
+          backgroundColor: isProjectHovered 
+            ? "#2b2b2b" 
+            : (isHovered 
+                ? (isDarkBg ? "rgba(247, 242, 236, 0.15)" : "rgba(201, 181, 156, 0.25)") 
+                : "rgba(201, 181, 156, 0)"),
+          borderColor: isProjectHovered 
+            ? "#2b2b2b" 
+            : (hoverText 
+                ? (hoverColor || "#c9b59c") 
+                : (isHovered 
+                    ? (isDarkBg ? "#ffffff" : "#2b2b2b") 
+                    : (isDarkBg ? "#ffffff" : "#c9b59c"))),
         }}
         transition={{ type: "spring", stiffness: 350, damping: 25 }}
       >
@@ -174,13 +189,14 @@ export default function MouseFollower() {
       
       {/* Inner dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 -ml-1 -mt-1 rounded-full bg-[#2b2b2b] pointer-events-none z-[100000] will-change-transform"
+        className="fixed top-0 left-0 w-2 h-2 -ml-1 -mt-1 rounded-full pointer-events-none z-[100000] will-change-transform"
         style={{
           x: mouseX,
           y: mouseY,
         }}
         animate={{
           scale: (isHovered || isProjectHovered) ? 0 : 1,
+          backgroundColor: isDarkBg ? "#c9b59c" : "#2b2b2b",
         }}
         transition={{ type: "spring", stiffness: 350, damping: 25 }}
       />

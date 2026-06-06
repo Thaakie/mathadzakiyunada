@@ -19,7 +19,7 @@ const Hero = () => {
             <span className="bg-gradient-to-r from-[#2b2b2b] via-[#4a4a4a] to-[#c9b59c] bg-clip-text text-transparent">M Atha Dzaki Yunada</span>
           </motion.h1>
           <motion.p variants={fadeUp} className="subtitle text-lg md:text-xl text-[#2b2b2b]/70 leading-relaxed mb-8 max-w-lg mx-auto md:mx-0">
-            Beginner Web Developer - Designing user-friendly and elegant digital interfaces.
+            Beginner Web Developer - Learning and building across the web stack, from user interfaces to backend systems and deployment.
           </motion.p>
           <motion.div variants={fadeUp} className="hero-buttons flex flex-wrap gap-4 justify-center md:justify-start">
             <Link
