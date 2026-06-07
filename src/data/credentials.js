@@ -7,6 +7,7 @@ export const experiences = [
     logo: "/assets/DBSLOGO.png",
     period: "Feb 2026 - Present",
     duration: "5 mos",
+    followerText: "DBS FOUNDATION • APPRENTICESHIP •",
     description: "Currently participating in a competitive full-time apprenticeship program powered by the DBS Foundation, where I build responsive front-end interfaces using React and modern JavaScript ( ES6+ ). I also design backend services with Node.js and integrate MySQL databases to support full-stack application development. Through this program, I gain hands-on experience implementing authentication systems, CRUD operations, and API integrations while practicing clean code principles and structured debugging approaches.",
     skills: ["ReactJS", "Node.js", "Express", "PostgreSQL", "TypeScript", "JavaScript (ES6+)"],
     capstone: {

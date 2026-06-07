@@ -171,12 +171,14 @@ const ExperienceCert = ({
             <div className="relative border-l border-[#c9b59c]/30 pl-6 md:pl-8 ml-3 md:ml-6 flex flex-col gap-10 mx-auto">
               {experiences.map((exp) => {
                 const isCurrent = exp.period.toLowerCase().includes("present");
+                const expHoverText = exp.followerText || `${exp.company.slice(0, 15).toUpperCase()} • ${exp.type.toUpperCase()} •`;
                 
                 return (
                   <motion.div
                     key={exp.id}
                     variants={fadeUp}
-                    className="relative group rounded-xl border border-[#2b2b2b]/10 bg-white p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#c9b59c]/40"
+                    className="relative group rounded-xl border border-[#2b2b2b]/10 bg-white p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#c9b59c]/40 experience-card"
+                    data-exp-hover-text={expHoverText}
                   >
                     {/* Timeline Dot with pulsing ring for present job */}
                     <div className="absolute -left-[31px] md:-left-[41px] top-8 flex items-center justify-center z-10">

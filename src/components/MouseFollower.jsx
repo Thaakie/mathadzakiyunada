@@ -6,6 +6,8 @@ export default function MouseFollower() {
   const [isMobile, setIsMobile] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
   const [isProjectHovered, setIsProjectHovered] = useState(false);
+  const [isExperienceHovered, setIsExperienceHovered] = useState(false);
+  const [experienceHoverText, setExperienceHoverText] = useState("");
   const [isVisible, setIsVisible] = useState(false);
   const [hoverText, setHoverText] = useState("");
   const [hoverColor, setHoverColor] = useState("");
@@ -65,6 +67,12 @@ export default function MouseFollower() {
       const isProjectCard = target.closest(".project-card");
       setIsProjectHovered(!!isProjectCard);
 
+      // Detect Experience Card hover
+      const expCard = target.closest("[data-exp-hover-text]");
+      const isExpCard = !!expCard;
+      setIsExperienceHovered(isExpCard);
+      setExperienceHoverText(isExpCard ? expCard.getAttribute("data-exp-hover-text") : "");
+
       // Detect Tech Stack hover
       const hoverInfoEl = target.closest("[data-hover-info]");
       const hoverTextValue = hoverInfoEl ? hoverInfoEl.getAttribute("data-hover-info") : "";
@@ -83,7 +91,7 @@ export default function MouseFollower() {
         target.classList.contains("clickable") ||
         window.getComputedStyle(target).cursor === "pointer";
 
-      setIsHovered(!!isInteractive && !hoverTextValue && !isProjectCard);
+      setIsHovered(!!isInteractive && !hoverTextValue && !isProjectCard && !isExpCard);
     };
 
     window.addEventListener("mousemove", handleMouseMove);
@@ -113,13 +121,13 @@ export default function MouseFollower() {
           y: followerY,
         }}
         animate={{
-          scale: isProjectHovered ? 2.3 : (isHovered ? 1.8 : 1),
-          backgroundColor: isProjectHovered 
+          scale: isProjectHovered || isExperienceHovered ? 2.3 : (isHovered ? 1.8 : 1),
+          backgroundColor: isProjectHovered || isExperienceHovered
             ? "#2b2b2b" 
             : (isHovered 
                 ? (isDarkBg ? "rgba(247, 242, 236, 0.15)" : "rgba(201, 181, 156, 0.25)") 
                 : "rgba(201, 181, 156, 0)"),
-          borderColor: isProjectHovered 
+          borderColor: isProjectHovered || isExperienceHovered
             ? "#2b2b2b" 
             : (hoverText 
                 ? (hoverColor || "#c9b59c") 
@@ -185,6 +193,49 @@ export default function MouseFollower() {
             </svg>
           </motion.div>
         )}
+
+        {/* Circular spinning EXPERIENCE text + Briefcase (Experience Card Hover) */}
+        {isExperienceHovered && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.6 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="absolute inset-0 flex items-center justify-center pointer-events-none w-full h-full"
+          >
+            {/* Spinning Text SVG */}
+            <motion.svg
+              viewBox="0 0 100 100"
+              className="absolute inset-0 w-full h-full"
+              animate={{ rotate: 360 }}
+              transition={{ repeat: Infinity, duration: 12, ease: "linear" }}
+            >
+              <path
+                id="expPath"
+                d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0"
+                fill="none"
+              />
+              <text fill="#c9b59c" className="text-[7.5px] font-extrabold tracking-[0.1em] select-none">
+                <textPath href="#expPath">
+                  {experienceHoverText}
+                </textPath>
+              </text>
+            </motion.svg>
+
+            {/* Central Briefcase Icon */}
+            <svg 
+              viewBox="0 0 24 24" 
+              className="absolute text-[#c9b59c]" 
+              style={{ width: "16px", height: "16px" }}
+              fill="none" 
+              stroke="currentColor" 
+              strokeWidth="2.5" 
+              strokeLinecap="round" 
+              strokeLinejoin="round"
+            >
+              <rect x="2" y="7" width="20" height="14" rx="2" ry="2" />
+              <path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16" />
+            </svg>
+          </motion.div>
+        )}
       </motion.div>
       
       {/* Inner dot */}
@@ -195,7 +246,7 @@ export default function MouseFollower() {
           y: mouseY,
         }}
         animate={{
-          scale: (isHovered || isProjectHovered) ? 0 : 1,
+          scale: (isHovered || isProjectHovered || isExperienceHovered) ? 0 : 1,
           backgroundColor: isDarkBg ? "#c9b59c" : "#2b2b2b",
         }}
         transition={{ type: "spring", stiffness: 350, damping: 25 }}
