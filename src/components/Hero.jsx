@@ -5,7 +5,7 @@ import { fadeInLeft, fadeInRight, fadeUp, staggerParent } from "../utils/motion"
 
 const Hero = () => {
   return (
-    <section id="hero" className="min-h-[90vh] flex items-center relative pt-8">
+    <section id="hero" className="min-h-screen flex items-center relative pt-8 -mt-20">
       <motion.div
         className="max-w-[1100px] mx-auto px-8 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-12 items-center"
         variants={staggerParent(0.14, 0.08)}
@@ -68,7 +68,7 @@ const Hero = () => {
         animate={{ opacity: 0.6, y: 0 }}
         transition={{ delay: 0.8, duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
         onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-        className="arrow flex justify-center items-center scroll-down absolute left-10 -translate-x-1/2 
+        className="arrow flex justify-center items-center scroll-down absolute left-1/2 -translate-x-1/2 
           p-3 rounded-full bg-white/50 backdrop-blur-sm border border-white/30
           transition-all duration-300 hover:bg-white/80 hover:scale-110
           focus:outline-none focus:ring-2 focus:ring-[#c9b59c]"

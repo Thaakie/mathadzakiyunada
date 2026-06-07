@@ -5,6 +5,7 @@ import { scrollPageToTop } from "../utils/scroll";
 const desktopNavItems = [
   { label: "Home", to: "/" },
   { label: "About", to: { pathname: "/", hash: "#about" } },
+  { label: "Experience", to: { pathname: "/", hash: "#experience" } },
   { label: "Skills", to: { pathname: "/", hash: "#techstack" } },
   { label: "Works", to: "/works" },
   { label: "Contact", to: { pathname: "/", hash: "#contact" } },
@@ -13,6 +14,7 @@ const desktopNavItems = [
 const mobileNavItems = [
   { label: "Home", to: "/" },
   { label: "Tentang", to: { pathname: "/", hash: "#about" } },
+  { label: "Pengalaman", to: { pathname: "/", hash: "#experience" } },
   { label: "Skills", to: { pathname: "/", hash: "#techstack" } },
   { label: "Karya", to: "/works" },
   { label: "Kontak", to: { pathname: "/", hash: "#contact" } },
