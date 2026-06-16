@@ -23,14 +23,14 @@ export const projects = [
     summary: "AI-powered web app for identifying waste categories and improving sorting awareness.",
     description:
       "EcoSort is a web-based AI solution designed to improve waste sorting habits in Indonesia. Built with React, Express.js, and Gemini API, it helps users identify waste through image analysis, provides educational feedback, and guides them toward better recycling decisions based on local environmental standards.",
-    image: "/assets/wasteclassifier.png",
+    image: "/assets/WASTECLASSIFIER.png",
     tags: ["ReactJS", "Express.js", "Gemini API"],
     year: "2024",
     role: "Full Stack Developer",
     status: "Live",
     featured: true,
     category: "AI Web App",
-    liveUrl: "https://lnkd.in/gfPQSqih",
+    liveUrl: "https://ecosort-339706174234.asia-southeast2.run.app/",
     sourceUrl: "",
     highlights: [
       "Supports real-time waste scanning with AI-powered classification into Organic, Inorganic, and Hazardous categories.",
