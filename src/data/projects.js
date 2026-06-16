@@ -3,8 +3,7 @@ const createComingSoonProject = (id) => ({
   slug: `coming-soon-${id}`,
   title: "Coming Soon",
   summary: "A new project is currently in progress and will be published here soon.",
-  description:
-    "This slot is reserved for an upcoming project. I use these placeholders to keep the portfolio structure ready as new work is added over time.",
+  description: "This slot is reserved for an upcoming project. I use these placeholders to keep the portfolio structure ready as new work is added over time.",
   image: "",
   tags: ["In Progress"],
   year: "Next Release",
@@ -13,32 +12,30 @@ const createComingSoonProject = (id) => ({
   category: "Upcoming Project",
   liveUrl: "",
   sourceUrl: "",
-  highlights: [
-    "Project brief and scope are still being finalized.",
-    "Visual assets and production links will be added after launch.",
-  ],
+  highlights: ["Project brief and scope are still being finalized.", "Visual assets and production links will be added after launch."],
 });
 
 export const projects = [
   {
     id: 1,
-    slug: "fetch-pokemon",
-    title: "Fetch Pokemon",
-    summary: "Web app for browsing Pokemon data from a public API.",
+    slug: "waste-classifier",
+    title: "Waste Classifier",
+    summary: "AI-powered web app for identifying waste categories and improving sorting awareness.",
     description:
-      "A React-based project that lets users explore Pokemon data with a playful interface. The focus was on API consumption, responsive layout, and a clean browsing flow.",
-    image: "/assets/fetchpoke.png",
-    tags: ["ReactJS", "Tailwind", "API"],
+      "EcoSort is a web-based AI solution designed to improve waste sorting habits in Indonesia. Built with React, Express.js, and Gemini API, it helps users identify waste through image analysis, provides educational feedback, and guides them toward better recycling decisions based on local environmental standards.",
+    image: "/assets/wasteclassifier.png",
+    tags: ["ReactJS", "Express.js", "Gemini API"],
     year: "2024",
-    role: "Frontend Developer",
+    role: "Full Stack Developer",
     status: "Live",
-    category: "Web App",
-    liveUrl: "https://reactpokemonapi.vercel.app/",
+    featured: true,
+    category: "AI Web App",
+    liveUrl: "https://lnkd.in/gfPQSqih",
     sourceUrl: "",
     highlights: [
-      "Fetches Pokemon information from an external API.",
-      "Responsive card layout for browsing multiple entries.",
-      "Built to practice React state management and component structure.",
+      "Supports real-time waste scanning with AI-powered classification into Organic, Inorganic, and Hazardous categories.",
+      "Provides material reasoning, educational feedback, and nearby recycling guidance such as Bank Sampah recommendations.",
+      "Uses Gemini prompt engineering and optimized response settings to improve classification quality and user-facing explanations.",
     ],
   },
   {
@@ -46,8 +43,7 @@ export const projects = [
     slug: "umkm-landing-page",
     title: "UMKM Landing Page",
     summary: "Business profile website for an UMKM college project.",
-    description:
-      "A landing page focused on presenting a small business profile in a simple, readable, and mobile-friendly layout. The goal was to communicate the brand clearly with lightweight front-end technology.",
+    description: "A landing page focused on presenting a small business profile in a simple, readable, and mobile-friendly layout. The goal was to communicate the brand clearly with lightweight front-end technology.",
     image: "/assets/UMKMLP.png",
     tags: ["HTML", "CSS"],
     year: "2024",
@@ -56,40 +52,15 @@ export const projects = [
     category: "Landing Page",
     liveUrl: "https://umkm-web-three.vercel.app/",
     sourceUrl: "",
-    highlights: [
-      "Introduces the business profile, products, and visual identity.",
-      "Uses a simple static stack for easy deployment and maintenance.",
-      "Designed as a college collaboration project.",
-    ],
+    highlights: ["Introduces the business profile, products, and visual identity.", "Uses a simple static stack for easy deployment and maintenance.", "Designed as a college collaboration project."],
   },
+
   {
     id: 3,
-    slug: "quiz-app",
-    title: "Quiz App",
-    summary: "Interactive quiz application built with React.",
-    description:
-      "A lightweight quiz app created to practice dynamic rendering, answer flow, and basic state-driven UI in React. The interface was kept straightforward so the interaction remains the main focus.",
-    image: "/assets/QUIZ1.png",
-    tags: ["ReactJS", "CSS"],
-    year: "2024",
-    role: "Frontend Developer",
-    status: "Live",
-    category: "Learning Project",
-    liveUrl: "https://react-quiz-iota-nine.vercel.app/",
-    sourceUrl: "",
-    highlights: [
-      "Guides users through a question-by-question quiz flow.",
-      "Uses React state to track answers and progress.",
-      "Built to strengthen component-based UI thinking.",
-    ],
-  },
-  {
-    id: 4,
     slug: "recap-chat-website",
     title: "Recap-Chat Website",
     summary: "Laravel learning project focused on PHP framework fundamentals.",
-    description:
-      "A practice project for learning how Laravel structures routes, views, and application logic. It helped deepen my understanding of PHP-based web development beyond static interfaces.",
+    description: "A practice project for learning how Laravel structures routes, views, and application logic. It helped deepen my understanding of PHP-based web development beyond static interfaces.",
     image: "/assets/rechatwebsite.png",
     tags: ["PHP", "Laravel"],
     year: "2024",
@@ -98,19 +69,14 @@ export const projects = [
     category: "Framework Practice",
     liveUrl: "",
     sourceUrl: "",
-    highlights: [
-      "Explores Laravel conventions and project structure.",
-      "Used as a hands-on learning project for PHP framework development.",
-      "Prepared as a stepping stone toward more structured backend work.",
-    ],
+    highlights: ["Explores Laravel conventions and project structure.", "Used as a hands-on learning project for PHP framework development.", "Prepared as a stepping stone toward more structured backend work."],
   },
   {
-    id: 5,
+    id: 4,
     slug: "letter-website",
     title: "Letter Website",
     summary: "A personal web experience for sending meaningful messages.",
-    description:
-      "A small website built around the idea of delivering a personal letter in a warmer and more memorable digital format. The focus was on sentiment, presentation, and simple interaction.",
+    description: "A small website built around the idea of delivering a personal letter in a warmer and more memorable digital format. The focus was on sentiment, presentation, and simple interaction.",
     image: "/assets/PESAN.png",
     tags: ["PHP", "Laravel"],
     year: "2024",
@@ -119,40 +85,14 @@ export const projects = [
     category: "Personal Project",
     liveUrl: "",
     sourceUrl: "",
-    highlights: [
-      "Turns a personal message into a themed web-based experience.",
-      "Uses simple interaction to support the emotional tone of the project.",
-      "Built as an experiment in storytelling through UI.",
-    ],
+    highlights: ["Turns a personal message into a themed web-based experience.", "Uses simple interaction to support the emotional tone of the project.", "Built as an experiment in storytelling through UI."],
   },
   {
-    id: 6,
-    slug: "to-do-app",
-    title: "To-Do App",
-    summary: "Task management project for practicing modern React-based workflows.",
-    description:
-      "A productivity-focused app built to explore task creation, completion states, and simple UI patterns for everyday use cases. This project helped reinforce reusable component thinking.",
-    image: "/assets/todoo.png",
-    tags: ["React Native", "Next.js"],
-    year: "2024",
-    role: "Frontend Developer",
-    status: "Prototype",
-    category: "Productivity App",
-    liveUrl: "",
-    sourceUrl: "",
-    highlights: [
-      "Covers the basic task management flow from add to complete.",
-      "Used to practice app-like interaction patterns.",
-      "Prepared as a base for future feature expansion.",
-    ],
-  },
-  {
-    id: 7,
+    id: 5,
     slug: "catterry",
     title: "Catterry",
     summary: "Website concept for cat housing and care information.",
-    description:
-      "A themed website created to present a cat care and housing concept in a friendly, approachable way. The project blends informative content with a playful front-end presentation.",
+    description: "A themed website created to present a cat care and housing concept in a friendly, approachable way. The project blends informative content with a playful front-end presentation.",
     image: "/assets/Catterry.jpeg",
     tags: ["HTML", "CSS", "JavaScript"],
     year: "2024",
@@ -161,18 +101,9 @@ export const projects = [
     category: "Informational Website",
     liveUrl: "https://cattery-p-dicoding.vercel.app/",
     sourceUrl: "",
-    highlights: [
-      "Introduces cat housing ideas in a visual and approachable format.",
-      "Combines static layout techniques with small JavaScript interactions.",
-      "Built as a front-end showcase project.",
-    ],
+    highlights: ["Introduces cat housing ideas in a visual and approachable format.", "Combines static layout techniques with small JavaScript interactions.", "Built as a front-end showcase project."],
   },
   createComingSoonProject(8),
-  createComingSoonProject(9),
-  createComingSoonProject(10),
-  createComingSoonProject(11),
-  createComingSoonProject(12),
 ];
 
-export const getProjectBySlug = (slug) =>
-  projects.find((project) => project.slug === slug);
+export const getProjectBySlug = (slug) => projects.find((project) => project.slug === slug);
