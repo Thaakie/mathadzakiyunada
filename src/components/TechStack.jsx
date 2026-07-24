@@ -214,6 +214,17 @@ const techStackCategories = [
           </svg>
         ),
       },
+      {
+        name: "Docker",
+        proficiencyLabel: "Beginner",
+        color: "#2496ED",
+        description: "Containerization Platform",
+        icon: (
+          <svg viewBox="0 0 24 24" fill="currentColor" className="w-8 h-8">
+            <path d="M12 2L0 7v12l12 5 12-5V7l-12-5zm10 15l-10 4.4-10-4.4V9l10-4.4L22 9v8zm0-7.6V14l-6 2.7v-5.3L22 9v.4zM12 14.6l6-2.7v-5.3l-6 2.6v5.3zM2 14.6l6-2.7v-5.3L2 9v5.3z" />
+          </svg>
+        ),
+      },
     ],
   },
 ];
