@@ -232,7 +232,7 @@ const ExperienceCert = ({
                       <div className="mt-6 rounded-xl border-l-4 border-l-[#c9b59c] border-y border-r border-[#2b2b2b]/8 bg-[#c9b59c]/3 p-5 md:p-6 transition-all duration-300 hover:bg-[#c9b59c]/6">
                         <div className="flex items-center gap-2 mb-3">
                           <span className="text-[9px] font-bold tracking-wider uppercase bg-[#c9b59c] text-white px-2 py-0.5 rounded-md">
-                            CAPSTONE PROJECT
+                            CAPSTONE TEAM PROJECT
                           </span>
                         </div>
                         <h5 className="font-bold text-base text-[#2b2b2b] m-0">
