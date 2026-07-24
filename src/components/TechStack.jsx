@@ -190,7 +190,7 @@ const techStackCategories = [
     ],
   },
   {
-    category: "Version Control",
+    category: "Tools",
     items: [
       {
         name: "GitHub",
