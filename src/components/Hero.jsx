@@ -6,12 +6,7 @@ import { fadeInLeft, fadeInRight, fadeUp, staggerParent } from "../utils/motion"
 const Hero = () => {
   return (
     <section id="hero" className="min-h-screen flex items-center relative pt-8 -mt-20">
-      <motion.div
-        className="max-w-[1100px] mx-auto px-8 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-12 items-center"
-        variants={staggerParent(0.14, 0.08)}
-        initial="hidden"
-        animate="visible"
-      >
+      <motion.div className="max-w-[1100px] mx-auto px-8 grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-12 items-center" variants={staggerParent(0.14, 0.08)} initial="hidden" animate="visible">
         <motion.div variants={fadeInLeft} className="hero-text order-2 md:order-1 text-center md:text-left">
           <motion.h1 variants={fadeUp} className="title text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight">
             Hola, I am
@@ -19,7 +14,7 @@ const Hero = () => {
             <span className="bg-gradient-to-r from-[#2b2b2b] via-[#4a4a4a] to-[#c9b59c] bg-clip-text text-transparent">M Atha Dzaki Yunada</span>
           </motion.h1>
           <motion.p variants={fadeUp} className="subtitle text-lg md:text-xl text-[#2b2b2b]/70 leading-relaxed mb-8 max-w-lg mx-auto md:mx-0">
-            Beginner Web Developer - Learning and building across the web stack, from user interfaces to backend systems and deployment.
+            Full-Stack Web Developer - Learning and building across the web stack, from user interfaces to backend systems also cloud and deployment.
           </motion.p>
           <motion.div variants={fadeUp} className="hero-buttons flex flex-wrap gap-4 justify-center md:justify-start">
             <Link
@@ -85,4 +80,3 @@ const Hero = () => {
 };
 
 export default Hero;
-

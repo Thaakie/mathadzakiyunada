@@ -73,7 +73,6 @@ export const projects = [
   createComingSoonProject(4),
   createComingSoonProject(5),
   createComingSoonProject(6),
-
 ];
 
 export const getProjectBySlug = (slug) => projects.find((project) => project.slug === slug);
