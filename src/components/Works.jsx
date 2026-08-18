@@ -8,13 +8,20 @@ import { fadeUp, staggerParent, viewport } from "../utils/motion";
 const Works = ({ sectionId = "works", title = "My Works", subtitle = "Some web development projects and design experiments I have worked on.", showPagination = true, showViewAll = false, animateImmediately = false }) => {
   const currentProjects = useMemo(() => {
     if (showViewAll) {
-      // Limit to 6 projects on homepage preview
-      return projects.slice(0, 6);
+      // Keep 1 featured card plus 6 grid cards on the homepage preview
+      return projects.slice(0, 7);
     }
     return projects;
   }, [showViewAll]);
 
   const featuredProject = useMemo(() => currentProjects.find((project) => project.featured) ?? currentProjects[0], [currentProjects]);
+  const gridProjects = useMemo(() => {
+    if (!featuredProject) {
+      return currentProjects;
+    }
+
+    return currentProjects.filter((project) => project.slug !== featuredProject.slug);
+  }, [currentProjects, featuredProject]);
 
   return (
     <section id={sectionId} className="py-20 relative overflow-hidden">
@@ -93,7 +100,7 @@ const Works = ({ sectionId = "works", title = "My Works", subtitle = "Some web d
           initial="hidden"
           {...(animateImmediately ? { animate: "visible" } : { whileInView: "visible", viewport })}
         >
-          {currentProjects.map((project, index) => (
+          {gridProjects.map((project, index) => (
             <motion.div key={project.id} variants={fadeUp} custom={index}>
               <ProjectCard project={project} index={index} />
             </motion.div>

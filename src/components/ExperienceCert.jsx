@@ -59,15 +59,8 @@ const CapstoneSlider = ({ images, onImageClick }) => {
   return (
     <div className="relative group/slider mt-4 aspect-[16/10] w-full overflow-hidden rounded-lg border border-[#2b2b2b]/10 bg-[#efe9e3]/20 shadow-inner">
       {/* Slide Images */}
-      <div 
-        className="w-full h-full cursor-zoom-in"
-        onClick={() => onImageClick(images[currentIndex])}
-      >
-        <img 
-          src={images[currentIndex]} 
-          alt={`Screenshot ${currentIndex + 1}`}
-          className="w-full h-full object-cover select-none"
-        />
+      <div className="w-full h-full cursor-zoom-in" onClick={() => onImageClick(images[currentIndex])}>
+        <img src={images[currentIndex]} alt={`Screenshot ${currentIndex + 1}`} className="w-full h-full object-cover select-none" />
         {/* Zoom icon hint on hover */}
         <div className="absolute inset-0 bg-black/25 opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-center justify-center pointer-events-none">
           <span className="text-white bg-black/40 p-2.5 rounded-full backdrop-blur-sm shadow-md border border-white/10">
@@ -127,12 +120,7 @@ const CapstoneSlider = ({ images, onImageClick }) => {
   );
 };
 
-const ExperienceCert = ({
-  sectionId = "experience",
-  title = "Experience",
-  subtitle = "My professional journey and apprenticeship experience.",
-  showViewAll = true,
-}) => {
+const ExperienceCert = ({ sectionId = "experience", title = "Experience", subtitle = "My professional journey and apprenticeship experience.", showViewAll = true }) => {
   const [activeItem, setActiveItem] = useState(null);
 
   return (
@@ -144,13 +132,7 @@ const ExperienceCert = ({
 
       <div className="max-w-[1200px] mx-auto px-6 md:px-8 relative z-10">
         {/* Section Header */}
-        <motion.div
-          className="section-header text-center mb-16"
-          variants={staggerParent(0.12)}
-          initial="hidden"
-          whileInView="visible"
-          viewport={viewport}
-        >
+        <motion.div className="section-header text-center mb-16" variants={staggerParent(0.12)} initial="hidden" whileInView="visible" viewport={viewport}>
           <motion.h2 variants={fadeUp} className="text-3xl md:text-4xl font-bold mb-4 text-[#2b2b2b]">
             {title}
           </motion.h2>
@@ -161,31 +143,23 @@ const ExperienceCert = ({
 
         {/* Experience Section */}
         <div className="mb-6">
-          <motion.div
-            variants={staggerParent(0.12)}
-            initial="hidden"
-            whileInView="visible"
-            viewport={viewport}
-          >
+          <motion.div variants={staggerParent(0.12)} initial="hidden" whileInView="visible" viewport={viewport}>
             {/* Vertical Timeline Track Container */}
             <div className="relative border-l border-[#c9b59c]/30 pl-6 md:pl-8 ml-3 md:ml-6 flex flex-col gap-10 mx-auto">
               {experiences.map((exp) => {
                 const isCurrent = exp.period.toLowerCase().includes("present");
                 const expHoverText = exp.followerText || `${exp.company.slice(0, 15).toUpperCase()} • ${exp.type.toUpperCase()} •`;
-                
+
                 return (
                   <motion.div
                     key={exp.id}
                     variants={fadeUp}
                     className="relative group rounded-xl border border-[#2b2b2b]/10 bg-white p-6 md:p-8 shadow-sm transition-all duration-300 hover:shadow-md hover:border-[#c9b59c]/40 experience-card"
-                    data-exp-hover-text={expHoverText}
                   >
                     {/* Timeline Dot with pulsing ring for present job */}
                     <div className="absolute -left-[31px] md:-left-[41px] top-8 flex items-center justify-center z-10">
                       <div className="relative flex h-5 w-5 md:h-6 md:w-6 items-center justify-center rounded-full bg-[#fbfaf8] border-2 border-[#c9b59c]">
-                        {isCurrent && (
-                          <span className="absolute inline-flex h-full w-full rounded-full bg-[#c9b59c]/40 animate-ping opacity-75" />
-                        )}
+                        {isCurrent && <span className="absolute inline-flex h-full w-full rounded-full bg-[#c9b59c]/40 animate-ping opacity-75" />}
                         <div className="h-2 w-2 md:h-2.5 md:w-2.5 rounded-full bg-[#c9b59c]" />
                       </div>
                     </div>
@@ -205,16 +179,10 @@ const ExperienceCert = ({
                       {/* Meta */}
                       <div className="flex-1 min-w-0">
                         <div className="flex flex-wrap items-center gap-2 justify-between">
-                          <h4 className="font-bold text-xl text-[#2b2b2b] tracking-tight m-0">
-                            {exp.role}
-                          </h4>
-                          <span className="text-[10px] font-bold tracking-wider uppercase bg-[#c9b59c]/15 text-[#7a6855] px-2.5 py-1 rounded-full">
-                            {exp.type}
-                          </span>
+                          <h4 className="font-bold text-xl text-[#2b2b2b] tracking-tight m-0">{exp.role}</h4>
+                          <span className="text-[10px] font-bold tracking-wider uppercase bg-[#c9b59c]/15 text-[#7a6855] px-2.5 py-1 rounded-full">{exp.type}</span>
                         </div>
-                        <p className="text-base text-[#2b2b2b]/80 font-medium mt-1">
-                          {exp.company}
-                        </p>
+                        <p className="text-base text-[#2b2b2b]/80 font-medium mt-1">{exp.company}</p>
                         <p className="text-xs text-[#2b2b2b]/50 flex items-center gap-1.5 mt-2 font-medium">
                           <CalendarIcon />
                           {exp.period} &middot; {exp.duration}
@@ -223,44 +191,35 @@ const ExperienceCert = ({
                     </div>
 
                     {/* Description */}
-                    <p className="text-sm md:text-base leading-relaxed text-[#2b2b2b]/70 mt-6 m-0">
-                      {exp.description}
-                    </p>
+                    <p className="text-sm md:text-base leading-relaxed text-[#2b2b2b]/70 mt-6 m-0">{exp.description}</p>
 
                     {/* Nested Capstone Project Section */}
                     {exp.capstone && (
                       <div className="mt-6 rounded-xl border-l-4 border-l-[#c9b59c] border-y border-r border-[#2b2b2b]/8 bg-[#c9b59c]/3 p-5 md:p-6 transition-all duration-300 hover:bg-[#c9b59c]/6">
                         <div className="flex items-center gap-2 mb-3">
-                          <span className="text-[9px] font-bold tracking-wider uppercase bg-[#c9b59c] text-white px-2 py-0.5 rounded-md">
-                            CAPSTONE TEAM PROJECT
-                          </span>
+                          <span className="text-[9px] font-bold tracking-wider uppercase bg-[#c9b59c] text-white px-2 py-0.5 rounded-md">CAPSTONE TEAM PROJECT</span>
                         </div>
-                        <h5 className="font-bold text-base text-[#2b2b2b] m-0">
-                          {exp.capstone.title}
-                        </h5>
-                        <p className="text-sm text-[#2b2b2b]/68 mt-2 leading-relaxed m-0">
-                          {exp.capstone.description}
-                        </p>
+                        <h5 className="font-bold text-base text-[#2b2b2b] m-0">{exp.capstone.title}</h5>
+                        <p className="text-sm text-[#2b2b2b]/68 mt-2 leading-relaxed m-0">{exp.capstone.description}</p>
 
                         {/* Slideable Thumbnail Gallery */}
                         {exp.capstone.images && exp.capstone.images.length > 0 && (
                           <CapstoneSlider
                             images={exp.capstone.images}
-                            onImageClick={(imgUrl) => setActiveItem({
-                              image: imgUrl,
-                              title: exp.capstone.title,
-                              subtitle: "Capstone Project Screenshot"
-                            })}
+                            onImageClick={(imgUrl) =>
+                              setActiveItem({
+                                image: imgUrl,
+                                title: exp.capstone.title,
+                                subtitle: "Capstone Project Screenshot",
+                              })
+                            }
                           />
                         )}
 
                         {exp.capstone.tags && (
                           <div className="flex flex-wrap gap-1.5 mt-4">
                             {exp.capstone.tags.map((tag) => (
-                              <span
-                                key={tag}
-                                className="text-[10px] font-semibold bg-white text-[#2b2b2b]/60 border border-[#2b2b2b]/8 px-2 py-0.5 rounded-md shadow-sm"
-                              >
+                              <span key={tag} className="text-[10px] font-semibold bg-white text-[#2b2b2b]/60 border border-[#2b2b2b]/8 px-2 py-0.5 rounded-md shadow-sm">
                                 {tag}
                               </span>
                             ))}
@@ -271,9 +230,7 @@ const ExperienceCert = ({
 
                     {/* Skills/Tags */}
                     <div className="mt-6 border-t border-[#2b2b2b]/5 pt-5">
-                      <p className="text-xs font-bold text-[#2b2b2b]/40 uppercase tracking-wider mb-3">
-                        Skills
-                      </p>
+                      <p className="text-xs font-bold text-[#2b2b2b]/40 uppercase tracking-wider mb-3">Skills</p>
                       <div className="flex flex-wrap gap-2">
                         {exp.skills.map((skill) => (
                           <span
@@ -294,13 +251,7 @@ const ExperienceCert = ({
 
         {/* View on LinkedIn Button */}
         {showViewAll && (
-          <motion.div
-            className="mt-14 flex justify-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={viewport}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <motion.div className="mt-14 flex justify-center" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={viewport} transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}>
             <a
               href="https://www.linkedin.com/in/m-atha-dzaki-yunada-35052131a/"
               target="_blank"
@@ -341,23 +292,13 @@ const ExperienceCert = ({
                 <CloseIcon />
               </button>
 
-              {activeItem.image && (
-                <img
-                  src={activeItem.image}
-                  alt={activeItem.title}
-                  className="w-auto h-auto max-w-full max-h-[75vh] object-contain rounded-lg shadow-inner"
-                />
-              )}
+              {activeItem.image && <img src={activeItem.image} alt={activeItem.title} className="w-auto h-auto max-w-full max-h-[75vh] object-contain rounded-lg shadow-inner" />}
 
               {/* Title overlay in Modal */}
               {activeItem.image && (
                 <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/95 via-black/45 to-transparent p-6 pt-16 text-white rounded-b-lg pointer-events-none">
                   <h3 className="font-bold text-lg m-0">{activeItem.title}</h3>
-                  {activeItem.subtitle && (
-                    <p className="text-sm text-white/70 m-0 mt-1">
-                      {activeItem.subtitle}
-                    </p>
-                  )}
+                  {activeItem.subtitle && <p className="text-sm text-white/70 m-0 mt-1">{activeItem.subtitle}</p>}
                 </div>
               )}
             </motion.div>

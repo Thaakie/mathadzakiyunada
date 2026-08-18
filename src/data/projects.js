@@ -54,7 +54,7 @@ export const projects = [
     sourceUrl: "",
     highlights: ["Turns a personal message into a themed web-based experience.", "Uses simple interaction to support the emotional tone of the project.", "Built as an experiment in storytelling through UI."],
   },
-    {
+  {
     id: 3,
     slug: "recap-chat-website",
     title: "Recap-Chat Website",
@@ -73,6 +73,7 @@ export const projects = [
   createComingSoonProject(4),
   createComingSoonProject(5),
   createComingSoonProject(6),
+  createComingSoonProject(7),
 ];
 
 export const getProjectBySlug = (slug) => projects.find((project) => project.slug === slug);
