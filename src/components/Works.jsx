@@ -14,12 +14,14 @@ const Works = ({ sectionId = "works", title = "My Works", subtitle = "Some web d
     return projects;
   }, [showViewAll]);
 
+  // Featured project is rendered as the large highlight card above the grid.
   const featuredProject = useMemo(() => currentProjects.find((project) => project.featured) ?? currentProjects[0], [currentProjects]);
   const gridProjects = useMemo(() => {
     if (!featuredProject) {
       return currentProjects;
     }
 
+    // Exclude the featured item so it does not repeat in the project grid.
     return currentProjects.filter((project) => project.slug !== featuredProject.slug);
   }, [currentProjects, featuredProject]);
 
@@ -41,6 +43,7 @@ const Works = ({ sectionId = "works", title = "My Works", subtitle = "Some web d
         </motion.div>
 
         {featuredProject && (
+          // UI highlight area: one project gets the wide featured treatment here.
           <motion.div className="mb-10 md:mb-12" variants={fadeUp} initial="hidden" {...(animateImmediately ? { animate: "visible" } : { whileInView: "visible", viewport })}>
             <Link
               to={`/works/${featuredProject.slug}`}
@@ -49,7 +52,7 @@ const Works = ({ sectionId = "works", title = "My Works", subtitle = "Some web d
               <div className="grid gap-6 p-5 md:grid-cols-[1.1fr_0.9fr] md:items-center md:p-7">
                 <div className="relative overflow-hidden rounded-[22px] border border-black/5 bg-white/70 aspect-[16/10]">
                   {featuredProject.image ? (
-                    <img src={featuredProject.image} alt={`Preview ${featuredProject.title}`} className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105" />
+                    <img src={featuredProject.image} alt={`Preview ${featuredProject.title}`} className="h-full w-full object-contain transition-transform duration-700 ease-out group-hover:scale-[1.02]" />
                   ) : (
                     <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-[#f2e6d8] via-[#fbfaf7] to-[#e8d8c4] px-6 text-center">
                       <div>

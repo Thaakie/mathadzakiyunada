@@ -27,8 +27,8 @@ export const projects = [
     tags: ["ReactJS", "Express.js", "Gemini API"],
     year: "2026",
     role: "Full Stack Developer",
-    status: "Live",
-    featured: true,
+    status: "Cloud Run out of kuota",
+    featured: true, // UI highlight: this project becomes the large featured card in Works.jsx
     category: "AI Web App",
     liveUrl: "https://ecosort-339706174234.asia-southeast2.run.app/",
     sourceUrl: "",
